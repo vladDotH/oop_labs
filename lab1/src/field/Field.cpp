@@ -40,17 +40,20 @@ Field &Field::operator=(const Field &f) {
     return *this;
 }
 
-
-Field::Field(Field &&f) : Field(f.width, f.height) {
+void Field::move(Field &&f) {
+    width = std::exchange(f.width, 0);
+    height = std::exchange(f.height, 0);
     cells = std::exchange(f.cells, nullptr);
+}
+
+Field::Field(Field &&f) {
+    move(std::move(f));
 }
 
 Field &Field::operator=(Field &&f) {
     if (this != &f) {
         clear();
-        width = std::exchange(f.width, 0);
-        height = std::exchange(f.height, 0);
-        cells = std::exchange(f.cells, nullptr);
+        move(std::move(f));
     }
     return *this;
 }

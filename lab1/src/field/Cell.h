@@ -2,7 +2,6 @@
 #define CELL_H
 
 #include "../entities/Entity.h"
-#include "random"
 
 class Cell {
 public:

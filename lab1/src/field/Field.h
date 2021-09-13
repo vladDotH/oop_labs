@@ -3,6 +3,7 @@
 
 #include "Cell.h"
 #include <iostream>
+#include <utility>
 
 class Field {
 private:
@@ -12,6 +13,8 @@ private:
     void clear();
 
     void copy(const Field &f);
+
+    void move(Field &&f);
 
     void default_generation();
 
