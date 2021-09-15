@@ -3,3 +3,5 @@ project(all)
 
 add_subdirectory(src)
 add_subdirectory(tests)
+
+message("Project built")

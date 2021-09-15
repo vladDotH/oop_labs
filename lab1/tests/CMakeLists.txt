@@ -16,6 +16,6 @@ target_link_libraries(init_test game_lib)
 target_link_libraries(copy_test game_lib)
 target_link_libraries(move_test game_lib)
 
-message("Tests is builded")
+message("Tests built")
 
 

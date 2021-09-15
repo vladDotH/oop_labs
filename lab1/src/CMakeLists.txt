@@ -5,4 +5,4 @@ set(CMAKE_CXX_STANDARD 17)
 set(LIB_SRC field/Cell.cpp field/Cell.h field/Field.cpp field/Field.h entities/Entity.h)
 add_library(game_lib STATIC ${LIB_SRC})
 
-message("Game library is builded")
+message("Game library built")
