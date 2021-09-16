@@ -24,6 +24,8 @@ public:
     Type getType() const;
 
     void putEntity(Entity *entity);
+    
+    Entity *getEntity();
 };
 
 #endif //CELL_H

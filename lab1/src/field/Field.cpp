@@ -69,16 +69,3 @@ Field::~Field() {
     clear();
 }
 
-std::ostream &operator<<(std::ostream &os, const Field &field) {
-    os << "width: " << field.width << " height: " << field.height << " cells: " << field.cells << '\n';
-    if (field.cells != nullptr) {
-        for (int i = 0; i < field.height; ++i) {
-            for (int j = 0; j < field.width; ++j) {
-                std::cout << field.cells[i][j].getType() << ' ';
-            }
-            std::cout << '\n';
-        }
-    }
-    return os;
-}
-

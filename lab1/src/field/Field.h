@@ -4,8 +4,12 @@
 #include "Cell.h"
 #include <iostream>
 #include <utility>
+#include "../viewers/FieldView.h"
+#include "../viewers/ConsoleFieldView.h"
 
 class Field {
+friend class FieldView;
+friend class ConsoleFieldView;
 private:
     int width, height;
     Cell **cells;
@@ -30,8 +34,6 @@ public:
     Field &operator=(Field &&f);
 
     ~Field();
-
-    friend std::ostream &operator<<(std::ostream &os, const Field &field);
 };
 
 #endif //FIELD_H
