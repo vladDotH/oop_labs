@@ -1,7 +1,7 @@
 #ifndef CELL_H
 #define CELL_H
 
-#include "../entities/Entity.h"
+#include "Entity.h"
 
 class Cell {
 public:
@@ -24,8 +24,11 @@ public:
     Type getType() const;
 
     void putEntity(Entity *entity);
-    
-    Entity *getEntity();
+
+    Entity *getEntity() {
+        return entity;
+    }
+
 };
 
 #endif //CELL_H

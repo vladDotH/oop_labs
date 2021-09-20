@@ -1,11 +1,10 @@
 #ifndef FIELD_H
 #define FIELD_H
 
-#include "Cell.h"
+#include "cells/Cell.h"
 #include <iostream>
 #include <utility>
-#include "../viewers/FieldView.h"
-#include "../viewers/ConsoleFieldView.h"
+#include "../viewers/Viewers_Declarations.h"
 
 class Field {
 friend class FieldView;

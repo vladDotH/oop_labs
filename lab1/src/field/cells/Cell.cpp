@@ -12,6 +12,3 @@ Cell::Type Cell::getType() const {
     return type;
 }
 
-Entity *Cell::getEntity() const {
-    return entity;
-}

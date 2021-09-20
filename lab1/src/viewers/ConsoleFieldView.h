@@ -6,9 +6,9 @@
 
 class ConsoleFieldView : FieldView{
 public:
-	void show(std::ostream &os);
+	void show(std::ostream &os) const;
 	
-	//friend std::ostream &operator<<(std::ostream &os, const ConsoleFieldView &fv);
+	friend std::ostream &operator<<(std::ostream &os, ConsoleFieldView &fv);
 };
 
 #endif //CONSOLEFIELDVIEW_H
