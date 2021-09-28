@@ -1,17 +1,20 @@
 #ifndef FIELD_H
 #define FIELD_H
 
-#include "cells/Cell.h"
 #include <iostream>
 #include <utility>
+#include "cells/AbstractCell.h"
+#include "../core/Vec2D.h"
 #include "../viewers/Viewers_Declarations.h"
 
 class Field {
-friend class FieldView;
-friend class ConsoleFieldView;
+    friend class FieldView;
+    friend class ConsoleFieldView;
+    friend class FieldBuilder;
+
 private:
-    int width, height;
-    Cell **cells;
+    Vec2D size;
+    AbstractCell ***cells;
 
     void clear();
 
@@ -19,10 +22,11 @@ private:
 
     void move(Field &&f);
 
-    void default_generation();
+protected:
+    Field(Vec2D size);
 
 public:
-    Field(int width, int height);
+    AbstractCell &operator[](Vec2D p);
 
     Field(const Field &f);
 
@@ -32,7 +36,7 @@ public:
 
     Field &operator=(Field &&f);
 
-    ~Field();
+    virtual ~Field();
 };
 
 #endif //FIELD_H
