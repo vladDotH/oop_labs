@@ -2,6 +2,7 @@
 #define WALL_H
 
 #include "AbstractCell.h"
+#include "memory"
 
 class Wall : public AbstractCell {
 public:
@@ -9,11 +10,11 @@ public:
         return WALL;
     }
 
-    bool putEntity(Entity *entity) override {
+    bool putEntity(std::weak_ptr<Entity> entity) override {
         return false;
     }
 
-    bool interact(Entity *entity) override {
+    bool interact(std::weak_ptr<Entity> entity) override {
         return false;
     }
 
