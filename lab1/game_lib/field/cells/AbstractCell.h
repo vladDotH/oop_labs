@@ -20,9 +20,9 @@ public:
 
     virtual CELLS_ID getID() const = 0;
 
-    virtual bool putEntity(std::weak_ptr<Entity> entity) = 0;
+    virtual bool putEntity(std::shared_ptr<Entity> entity) = 0;
 
-    virtual bool interact(std::weak_ptr<Entity> entity) = 0;
+    virtual bool interact(std::shared_ptr<Entity> entity) = 0;
 
     virtual std::weak_ptr<Entity> getEntity() {
         return entity;

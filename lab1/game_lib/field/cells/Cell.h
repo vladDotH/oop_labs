@@ -9,7 +9,7 @@ public:
         return CELL;
     }
 
-    virtual bool putEntity(std::weak_ptr<Entity> entity) override {
+    virtual bool putEntity(std::shared_ptr<Entity> entity) override {
         if (!interact(entity)){
             this->entity = entity;
             return true;
@@ -17,10 +17,10 @@ public:
         return false;
     }
 
-    virtual bool interact(std::weak_ptr<Entity> entity) override {
+    virtual bool interact(std::shared_ptr<Entity> entity) override {
         if (this->entity.lock()) {
-            entity.lock()->interact(this->entity.lock());
-            this->entity.lock()->interact(entity.lock());
+            entity->interact(this->entity.lock());
+            this->entity.lock()->interact(entity);
             return true;
         }
         return false;

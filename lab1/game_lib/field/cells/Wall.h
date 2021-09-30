@@ -10,11 +10,11 @@ public:
         return WALL;
     }
 
-    bool putEntity(std::weak_ptr<Entity> entity) override {
+    bool putEntity(std::shared_ptr<Entity> entity) override {
         return false;
     }
 
-    bool interact(std::weak_ptr<Entity> entity) override {
+    bool interact(std::shared_ptr<Entity> entity) override {
         return false;
     }
 
