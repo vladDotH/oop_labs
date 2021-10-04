@@ -4,6 +4,7 @@
 #include <field/cells/Wall.h>
 #include "field/Field.h"
 #include "field/FieldBuilder.h"
+#include <memory>
 
 using namespace std;
 
