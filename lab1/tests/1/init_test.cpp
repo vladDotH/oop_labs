@@ -8,17 +8,17 @@
 using namespace std;
 
 int main() {
-    Field f1 = FieldBuilder::default_generation(Vec2D(5, 5));
+    Field f1 = FieldBuilder(Vec2D(5, 5), FieldBuilder::DEFAULT).build();
     ConsoleFieldView fv(&f1);
     cout << fv << endl;
 
-    Field f2 = FieldBuilder::default_generation(Vec2D(2, 3));
+    Field f2 = FieldBuilder(Vec2D(2, 3), FieldBuilder::DEFAULT).build();
     fv.setField(&f2);
     cout << fv << endl;
 
-    Field f3 = FieldBuilder::box_generation(Vec2D(10, 6));
+    Field f3 = FieldBuilder(Vec2D(10, 6), FieldBuilder::BOX).build();
     fv.setField(&f3);
     cout << fv << endl;
 
-    cout << f1[{4, 4}].getID() << endl;
+    cout << CellView::getChar(f1[{4, 4}]) << endl;
 }

@@ -5,24 +5,14 @@
 #include "../field/cells/Wall.h"
 #include "../field/cells/Exit.h"
 #include "../field/cells/Entrance.h"
+#include <map>
 
 class CellView {
-    constexpr static const char CELLS_CHAR[] = {' ', '#', '@', '$'};
+    static const char CELLS_CHAR[];
+    static const std::map<size_t, char> chars;
 public:
-    static CELLS_ID getCellID(AbstractCell *c) {
-        if (dynamic_cast<Wall *>(c))
-            return WALL;
-        else if (dynamic_cast<Exit *>(c))
-            return EXIT;
-        else if (dynamic_cast<Entrance *>(c))
-            return ENTRANCE;
-        else
-            return CELL;
-    }
-
-    static char getChar(CELLS_ID id) {
-        return CELLS_CHAR[id];
-    }
+    static char getChar(AbstractCell *p);
+    static char getChar(const AbstractCell& c);
 };
 
 #endif //CELLVIEW_H

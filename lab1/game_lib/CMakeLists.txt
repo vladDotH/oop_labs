@@ -11,8 +11,9 @@ set(LIB_SRC
         field/cells/Wall.h field/cells/Cell.h field/cells/Entrance.h field/cells/Exit.h
         field/Field.cpp field/Field.h
         field/FieldBuilder.h field/FieldBuilder.cpp
-        viewers/FieldView.h viewers/ConsoleFieldView.h viewers/Viewers_Declarations.h
-        viewers/CellView.h
+        viewers/FieldView.h viewers/Viewers_Declarations.h
+        viewers/ConsoleFieldView.h viewers/ConsoleFieldView.cpp
+        viewers/CellView.h viewers/CellView.cpp
         )
 
 add_library(game_lib STATIC ${LIB_SRC})

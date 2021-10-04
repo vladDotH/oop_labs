@@ -5,10 +5,6 @@
 
 class Wall : public AbstractCell {
 public:
-    CELLS_ID getID() const override {
-        return WALL;
-    }
-
     bool putEntity(Entity *entity) override {
         return false;
     }

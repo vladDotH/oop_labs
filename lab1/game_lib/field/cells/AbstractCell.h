@@ -17,8 +17,6 @@ protected:
 public:
     AbstractCell() = default;
 
-    virtual CELLS_ID getID() const = 0 ;
-
     virtual bool putEntity(Entity *entity) = 0;
 
     virtual bool interact(Entity *entity) = 0;

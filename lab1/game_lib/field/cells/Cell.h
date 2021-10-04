@@ -5,10 +5,6 @@
 
 class Cell : public AbstractCell {
 public:
-    virtual CELLS_ID getID() const override {
-        return CELL;
-    }
-
     virtual bool putEntity(Entity *entity) override {
         if (!interact(entity)){
             this->entity = entity;

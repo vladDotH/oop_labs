@@ -9,11 +9,25 @@
 
 class FieldBuilder {
 public:
+    enum Type {
+        DEFAULT,
+        BOX
+    };
+
+protected:
+    Field default_generation();
+
+    Field box_generation();
+
+    Vec2D size;
+    Type type;
+
+public:
     FieldBuilder() = delete;
 
-    static Field default_generation(Vec2D v);
+    FieldBuilder(const Vec2D &size, Type type);
 
-    static Field box_generation(Vec2D v);
+    Field build();
 };
 
 #endif //FIELDBUILDER_H

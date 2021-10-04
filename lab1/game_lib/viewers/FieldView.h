@@ -1,7 +1,7 @@
 #ifndef FIELDVIEW_H
 #define FIELDVIEW_H
 
-#include "field/Field.h"
+#include "../field/Field.h"
 
 class FieldView {
 protected:
@@ -11,9 +11,8 @@ public:
 
     FieldView(Field *field) : field(field) {}
 
-    const FieldView &setField(Field *field) {
+    void setField(Field *field) {
         this->field = field;
-        return *this;
     }
 
     virtual ~FieldView() = default;
