@@ -3,13 +3,6 @@
 
 #include "../../entities/Entity.h"
 
-enum CELLS_ID {
-    CELL,
-    WALL,
-    ENTRANCE,
-    EXIT
-};
-
 class AbstractCell {
 protected:
     std::weak_ptr<Entity> entity;
