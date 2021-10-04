@@ -12,16 +12,20 @@ enum CELLS_ID {
 
 class AbstractCell {
 protected:
-    Entity *entity = nullptr;
+    std::weak_ptr<Entity> entity;
 
 public:
     AbstractCell() = default;
 
-    virtual bool putEntity(Entity *entity) = 0;
+    virtual bool putEntity(std::weak_ptr<Entity> entity) = 0;
 
-    virtual bool interact(Entity *entity) = 0;
+    virtual bool interact(std::weak_ptr<Entity> entity) = 0;
 
     virtual AbstractCell *copy() = 0;
+
+    virtual std::weak_ptr<Entity> getEntity() {
+        return entity;
+    }
 
     virtual ~AbstractCell() = default;
 };
