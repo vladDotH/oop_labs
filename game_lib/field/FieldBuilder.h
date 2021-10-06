@@ -15,17 +15,19 @@ public:
     };
 
 protected:
-    Field default_generation();
+    void default_generation(Field &f);
 
-    Field box_generation();
+    void box_generation(Field &f);
 
     Vec2D size;
     Type type;
 
 public:
-    FieldBuilder() = delete;
-
     FieldBuilder(const Vec2D &size, Type type);
+
+    FieldBuilder& setSize(Vec2D &size);
+
+    FieldBuilder& setType(Type type);
 
     Field build();
 };

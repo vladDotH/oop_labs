@@ -8,10 +8,6 @@ const std::map<size_t, char> CellView::chars = {
         {typeid(Exit).hash_code(),     CELLS_CHAR[3]}
 };
 
-char CellView::getChar(AbstractCell *p) {
-    return chars.at(typeid(*p).hash_code());
-}
-
-char CellView::getChar(const AbstractCell& c) {
+char CellView::getChar(const AbstractCell &c) {
     return chars.at(typeid(c).hash_code());
 }

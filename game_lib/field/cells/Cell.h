@@ -6,24 +6,21 @@
 class Cell : public AbstractCell {
 public:
     virtual bool putEntity(std::weak_ptr<Entity> entity) override {
-        if (!interact(entity.lock())){
-            this->entity = entity;
-            return true;
+        if (!this->entity.expired()) {
+            if (!entity.lock()->interact(this->entity.lock()))
+                return true;
+
+            if (!this->entity.lock()->interact(entity.lock())) {
+                this->entity = entity;
+                return true;
+            }
         }
         return false;
     }
 
-    virtual bool interact(std::weak_ptr<Entity> entity) override {
-        if (this->entity.lock()) {
-            entity.lock()->interact(this->entity.lock());
-            this->entity.lock()->interact(entity.lock());
-            return true;
-        }
-        return false;
-    }
 
-    AbstractCell *copy() override {
-        return new Cell;
+    std::unique_ptr<AbstractCell> copy() override {
+        return std::make_unique<Cell>();
     }
 };
 

@@ -6,15 +6,18 @@
 #include "cells/AbstractCell.h"
 #include "../core/Vec2D.h"
 #include "../viewers/Viewers_Declarations.h"
+#include <memory>
 
 class Field {
     friend class FieldView;
+
     friend class ConsoleFieldView;
+
     friend class FieldBuilder;
 
 private:
     Vec2D size;
-    AbstractCell ***cells;
+    std::unique_ptr<std::unique_ptr<std::unique_ptr<AbstractCell>[]>[]> cells;
 
     void clear();
 

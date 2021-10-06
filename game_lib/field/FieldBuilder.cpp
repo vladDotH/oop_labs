@@ -1,45 +1,57 @@
 #include "FieldBuilder.h"
 
-Field FieldBuilder::default_generation() {
-    Field f(size);
-    f.cells[0][0] = new Entrance();
-    f.cells[size.y - 1][size.x - 1] = new Exit();
+FieldBuilder::FieldBuilder(const Vec2D &size, FieldBuilder::Type type) : size(size), type(type) {}
+
+void FieldBuilder::default_generation(Field &f) {
+    f.cells[0][0] = std::make_unique<Entrance>();
+    f.cells[size.y - 1][size.x - 1] = std::make_unique<Exit>();
     for (int i = 0; i < size.y; ++i) {
         for (int j = 0; j < size.x; ++j) {
             if (f.cells[i][j] == nullptr)
-                f.cells[i][j] = new Cell();
+                f.cells[i][j] = std::make_unique<Cell>();
         }
     }
-    return Field(std::move(f));
 }
 
-Field FieldBuilder::box_generation() {
+void FieldBuilder::box_generation(Field &f) {
     if (!(size >= one * 4))
         throw std::invalid_argument("too small field");
 
-    Field f(size);
-    f.cells[1][1] = new Entrance();
-    f.cells[size.y - 2][size.x - 2] = new Exit();
+    f.cells[1][1] = std::make_unique<Entrance>();
+    f.cells[size.y - 2][size.x - 2] = std::make_unique<Exit>();
     for (int i = 0; i < size.y; ++i) {
         for (int j = 0; j < size.x; ++j) {
             if (f.cells[i][j] == nullptr) {
                 if (i == 0 || i == size.y - 1 || j == 0 || j == size.x - 1)
-                    f.cells[i][j] = new Wall();
+                    f.cells[i][j] = std::make_unique<Wall>();
                 else
-                    f.cells[i][j] = new Cell();
+                    f.cells[i][j] = std::make_unique<Cell>();
             }
         }
+    }
+}
+
+Field FieldBuilder::build() {
+    Field f(size);
+    switch (type) {
+        case DEFAULT:
+            default_generation(f);
+            break;
+        case BOX:
+            box_generation(f);
+            break;
     }
     return Field(std::move(f));
 }
 
-FieldBuilder::FieldBuilder(const Vec2D &size, FieldBuilder::Type type) : size(size), type(type) {}
-
-Field FieldBuilder::build() {
-    switch (type) {
-        case DEFAULT:
-            return default_generation();
-        case BOX:
-            return box_generation();
-    }
+FieldBuilder &FieldBuilder::setSize(Vec2D &size) {
+    this->size = size;
+    return *this;
 }
+
+FieldBuilder &FieldBuilder::setType(FieldBuilder::Type type) {
+    this->type = type;
+    return *this;
+}
+
+

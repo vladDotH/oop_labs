@@ -9,12 +9,8 @@ public:
         return false;
     }
 
-    bool interact(std::weak_ptr<Entity> entity) override {
-        return false;
-    }
-
-    AbstractCell *copy() override {
-        return new Wall;
+    std::unique_ptr<AbstractCell> copy() override {
+        return std::make_unique<Wall>();
     }
 };
 

@@ -5,8 +5,8 @@
 
 class Exit : public Cell {
 public:
-    AbstractCell *copy() override {
-        return new Exit;
+    std::unique_ptr<AbstractCell> copy() override {
+        return std::make_unique<Exit>();
     }
 };
 

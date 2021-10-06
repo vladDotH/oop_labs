@@ -9,9 +9,9 @@ AbstractCell &Field::operator[](Vec2D p) {
 }
 
 Field::Field(Vec2D size) : size(size) {
-    cells = new AbstractCell **[size.y];
+    cells = std::make_unique<std::unique_ptr<std::unique_ptr<AbstractCell>[]>[]>(size.y);
     for (int i = 0; i < size.y; ++i) {
-        cells[i] = new AbstractCell *[size.x];
+        cells[i] = std::make_unique<std::unique_ptr<AbstractCell>[]>(size.x);
         for (int j = 0; j < size.x; ++j) {
             cells[i][j] = nullptr;
         }
@@ -20,9 +20,9 @@ Field::Field(Vec2D size) : size(size) {
 
 void Field::copy(const Field &f) {
     size = f.size;
-    cells = new AbstractCell **[size.y];
+    cells = std::make_unique<std::unique_ptr<std::unique_ptr<AbstractCell>[]>[]>(size.y);
     for (int i = 0; i < size.y; ++i) {
-        cells[i] = new AbstractCell *[size.x];
+        cells[i] = std::make_unique<std::unique_ptr<AbstractCell>[]>(size.x);
         for (int j = 0; j < size.x; ++j) {
             cells[i][j] = f.cells[i][j]->copy();
         }
@@ -43,7 +43,7 @@ Field &Field::operator=(const Field &f) {
 
 void Field::move(Field &&f) {
     size = std::exchange(f.size, null);
-    cells = std::exchange(f.cells, nullptr);
+    cells = std::move(f.cells);
 }
 
 Field::Field(Field &&f) {
@@ -61,11 +61,11 @@ Field &Field::operator=(Field &&f) {
 void Field::clear() {
     for (int i = 0; i < size.y; ++i) {
         for (int j = 0; j < size.x; ++j) {
-            delete cells[i][j];
+            cells[i][j].release();
         }
-        delete[] cells[i];
+        cells[i].release();
     }
-    delete[] cells;
+    cells.release();
 }
 
 Field::~Field() {
