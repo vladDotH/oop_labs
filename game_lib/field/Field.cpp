@@ -1,11 +1,15 @@
 #include "Field.h"
 
-AbstractCell &Field::operator[](Vec2D p) {
+AbstractCell &Field::get(Vec2D p) {
     if (!(p < size && p >= null))
         throw std::out_of_range("cell index error");
     if (cells[p.y][p.x] == nullptr)
         throw std::bad_alloc();
     return *cells[p.y][p.x];
+}
+
+AbstractCell &Field::operator[](Vec2D p) {
+    return get(p);
 }
 
 Field::Field(Vec2D size) : size(size) {
@@ -24,7 +28,7 @@ void Field::copy(const Field &f) {
     for (int i = 0; i < size.y; ++i) {
         cells[i] = std::make_unique<std::unique_ptr<AbstractCell>[]>(size.x);
         for (int j = 0; j < size.x; ++j) {
-            cells[i][j] = f.cells[i][j]->copy();
+            cells[i][j] = f.cells[i][j]->clone();
         }
     }
 }

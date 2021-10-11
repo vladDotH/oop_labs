@@ -1,6 +1,6 @@
 #include <iostream>
 #include <field/FieldBuilder.h>
-#include <viewers/ConsoleFieldView.h>
+#include <viewers/console/ConsoleFieldView.h>
 #include "field/Field.h"
 
 using namespace std;

@@ -1,6 +1,6 @@
 #include <iostream>
 #include <viewers/FieldView.h>
-#include <viewers/ConsoleFieldView.h>
+#include <viewers/console/ConsoleFieldView.h>
 #include <field/cells/Wall.h>
 #include "field/Field.h"
 #include "field/FieldBuilder.h"

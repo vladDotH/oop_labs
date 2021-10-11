@@ -2,13 +2,13 @@
 #define HEALERFACTORY_H
 
 #include "ItemFactory.h"
-#include "entities/Creature.h"
+#include "entities/creatures/Creature.h"
 
-class HealerFactory : ItemFactory {
+class HealerFactory : public ItemFactory {
 public:
     HealerFactory(float hp) :
-            ItemFactory([](Creature &c) -> bool {
-                c.updHp(hp);
+            ItemFactory([=](Creature &c) -> bool {
+                return c.updHp(hp) > 0;
             }) {}
 };
 

@@ -1,10 +1,11 @@
 #ifndef ABSTRACTCELL_H
 #define ABSTRACTCELL_H
 
+#include <memory>
 #include "../../entities/Entity.h"
-#include "memory"
+#include "../../core/Cloneable.h"
 
-class AbstractCell {
+class AbstractCell : public Cloneable<std::unique_ptr<AbstractCell>> {
 protected:
     std::weak_ptr<Entity> entity;
 
@@ -22,8 +23,6 @@ public:
     }
 
     virtual bool putEntity(std::weak_ptr<Entity> entity) = 0;
-
-    virtual std::unique_ptr<AbstractCell> copy() = 0;
 
     virtual ~AbstractCell() = default;
 };

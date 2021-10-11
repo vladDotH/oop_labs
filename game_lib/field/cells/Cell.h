@@ -14,12 +14,14 @@ public:
                 this->entity = entity;
                 return true;
             }
+        } else {
+            this->entity = entity;
         }
         return false;
     }
 
 
-    std::unique_ptr<AbstractCell> copy() override {
+    std::unique_ptr<AbstractCell> clone() override {
         return std::make_unique<Cell>();
     }
 };

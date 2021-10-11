@@ -2,13 +2,14 @@
 #define WEAPONFACTORY_H
 
 #include "ItemFactory.h"
-#include "entities/Creature.h"
+#include "entities/creatures/Creature.h"
 
-class WeaponFactory : ItemFactory {
+class WeaponFactory : public ItemFactory {
 public:
     WeaponFactory(float dmg) :
-            ItemFactory([](Creature &c) -> bool {
+            ItemFactory([=](Creature &c) -> bool {
                 c.updDmg(dmg);
+                return true;
             }) {}
 };
 

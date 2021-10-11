@@ -4,15 +4,15 @@
 #include "entities/EntityAbstractFactory.h"
 #include <functional>
 
-class ItemFactory : EntityAbstractFactory {
+class ItemFactory : public EntityAbstractFactory {
 protected:
     std::function<bool(Creature &)> action;
 
 public:
-    ItemFactory(const std::function<bool(Creature &)> &action) : action(f) {}
+    ItemFactory(const std::function<bool(Creature &)> &action) : action(action) {}
 
     std::shared_ptr<Entity> build() final override {
-        return std::shared_ptr<Item>(action);
+        return std::make_shared<Item>(action);
     }
 };
 

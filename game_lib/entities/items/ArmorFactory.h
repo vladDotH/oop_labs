@@ -2,13 +2,14 @@
 #define ARMORFACTORY_H
 
 #include "ItemFactory.h"
-#include "entities/Creature.h"
+#include "entities/creatures/Creature.h"
 
-class ArmorFactory : ItemFactory {
+class ArmorFactory : public ItemFactory {
 public:
     ArmorFactory(float armor) :
-            ItemFactory([](Creature &c) -> bool {
+            ItemFactory([=](Creature &c) -> bool {
                 c.updArmor(armor);
+                return true;
             }) {}
 };
 

@@ -1,7 +1,5 @@
 #include "FieldBuilder.h"
 
-FieldBuilder::FieldBuilder(const Vec2D &size, FieldBuilder::Type type) : size(size), type(type) {}
-
 void FieldBuilder::default_generation(Field &f) {
     f.cells[0][0] = std::make_unique<Entrance>();
     f.cells[size.y - 1][size.x - 1] = std::make_unique<Exit>();
@@ -31,20 +29,20 @@ void FieldBuilder::box_generation(Field &f) {
     }
 }
 
-Field FieldBuilder::build() {
-    Field f(size);
+std::shared_ptr<Field> FieldBuilder::build() {
+    auto f = std::make_shared<Field>(size);
     switch (type) {
         case DEFAULT:
-            default_generation(f);
+            default_generation(*f);
             break;
         case BOX:
-            box_generation(f);
+            box_generation(*f);
             break;
     }
-    return Field(std::move(f));
+    return f;
 }
 
-FieldBuilder &FieldBuilder::setSize(Vec2D &size) {
+FieldBuilder &FieldBuilder::setSize(Vec2D size) {
     this->size = size;
     return *this;
 }

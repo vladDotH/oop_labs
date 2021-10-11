@@ -2,17 +2,18 @@ cmake_minimum_required(VERSION 3.15)
 project(game_lib)
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(core entities field viewers field/cells game)
+include_directories(core entities field viewers viewers/console field/cells game)
 
 set(LIB_SRC
         core/Vec2D.h core/Vec2D.cpp
+        core/Cloneable.h
 
         entities/Entities_Declarations.h
         entities/Entity.h
-        entities/Creature.h entities/enemies/Enemy.h entities/items/Item.h entities/Player.h
-        entities/EntityAbstractFactory.h entities/CreatureFactory.h entities/items/ItemFactory.h
+        entities/creatures/Creature.h entities/creatures/enemies/Enemy.h entities/items/Item.h entities/creatures/Player.h
+        entities/EntityAbstractFactory.h entities/creatures/CreatureFactory.h entities/items/ItemFactory.h entities/creatures/enemies/EnemyFactory.h
         entities/items/HealerFactory.h entities/items/ArmorFactory.h entities/items/WeaponFactory.h
-        entities/enemies/LightFactory.h entities/enemies/MediumFactory.h entities/enemies/HeavyFactory.h
+        entities/creatures/enemies/LightFactory.h entities/creatures/enemies/MediumFactory.h entities/creatures/enemies/HeavyFactory.h
 
         field/cells/AbstractCell.h
         field/cells/Wall.h field/cells/Cell.h field/cells/Entrance.h field/cells/Exit.h
@@ -21,8 +22,10 @@ set(LIB_SRC
 
         viewers/Viewers_Declarations.h
         viewers/FieldView.h
-        viewers/ConsoleFieldView.h viewers/ConsoleFieldView.cpp
-        viewers/CellView.h viewers/CellView.cpp
+        viewers/console/EntityView.cpp viewers/console/EntityView.h
+        viewers/console/ConsoleObjectViewer.h
+        viewers/console/ConsoleFieldView.h viewers/console/ConsoleFieldView.cpp
+        viewers/console/CellView.h viewers/console/CellView.cpp
 
         game/Game.h game/Game.cpp
         )

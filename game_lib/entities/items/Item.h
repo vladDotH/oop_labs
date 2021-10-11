@@ -20,11 +20,14 @@ protected:
     }
 
 public:
-    Item() = default;
     Item(std::function<bool(Creature &)> f) : action(f) {}
 
     bool interact(std::shared_ptr<Entity> entity) override {
         return entity->interact(*this);
+    }
+
+    std::shared_ptr<Entity> clone() override {
+        return std::make_shared<Item>(action);
     }
 };
 

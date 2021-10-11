@@ -5,7 +5,7 @@
 
 class Entrance : public Cell {
 public:
-    std::unique_ptr<AbstractCell> copy() override {
+    std::unique_ptr<AbstractCell> clone() override {
         return std::make_unique<Entrance>();
     }
 };

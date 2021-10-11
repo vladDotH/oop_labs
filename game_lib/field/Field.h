@@ -25,10 +25,12 @@ private:
 
     void move(Field &&f);
 
-protected:
+public:
+
     Field(Vec2D size);
 
-public:
+    AbstractCell &get(Vec2D p);
+
     AbstractCell &operator[](Vec2D p);
 
     Field(const Field &f);

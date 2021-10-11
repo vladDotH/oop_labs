@@ -1,5 +1,5 @@
 #include <iostream>
-#include <viewers/ConsoleFieldView.h>
+#include <viewers/console/ConsoleFieldView.h>
 #include <field/FieldBuilder.h>
 #include "field/Field.h"
 

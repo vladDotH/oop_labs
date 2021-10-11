@@ -1,6 +1,7 @@
 #ifndef FIELDBUILDER_H
 #define FIELDBUILDER_H
 
+#include <memory>
 #include "cells/Cell.h"
 #include "cells/Wall.h"
 #include "cells/Entrance.h"
@@ -23,13 +24,13 @@ protected:
     Type type;
 
 public:
-    FieldBuilder(const Vec2D &size, Type type);
+    FieldBuilder() = default;
 
-    FieldBuilder& setSize(Vec2D &size);
+    FieldBuilder &setSize(Vec2D size);
 
-    FieldBuilder& setType(Type type);
+    FieldBuilder &setType(Type type);
 
-    Field build();
+    std::shared_ptr<Field> build();
 };
 
 #endif //FIELDBUILDER_H
