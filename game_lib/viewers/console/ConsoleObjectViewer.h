@@ -15,4 +15,5 @@ public:
     virtual char getChar(const T &) { return '\0'; };
 };
 
+
 #endif //CONSOLEOBJECTVIEWER_H

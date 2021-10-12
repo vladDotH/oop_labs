@@ -12,8 +12,6 @@ set(LIB_SRC
         entities/Entity.h
         entities/creatures/Creature.h entities/creatures/enemies/Enemy.h entities/items/Item.h entities/creatures/Player.h
         entities/EntityAbstractFactory.h entities/creatures/CreatureFactory.h entities/items/ItemFactory.h entities/creatures/enemies/EnemyFactory.h
-        entities/items/HealerFactory.h entities/items/ArmorFactory.h entities/items/WeaponFactory.h
-        entities/creatures/enemies/LightFactory.h entities/creatures/enemies/MediumFactory.h entities/creatures/enemies/HeavyFactory.h
 
         field/cells/AbstractCell.h
         field/cells/Wall.h field/cells/Cell.h field/cells/Entrance.h field/cells/Exit.h

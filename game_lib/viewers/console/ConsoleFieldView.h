@@ -15,4 +15,5 @@ public:
     friend std::ostream &operator<<(std::ostream &os, ConsoleFieldView &fv);
 };
 
+
 #endif //CONSOLEFIELDVIEW_H

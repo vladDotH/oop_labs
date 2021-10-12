@@ -9,4 +9,5 @@ public:
     virtual T clone() = 0;
 };
 
+
 #endif //CLONEABLE_H

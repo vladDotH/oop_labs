@@ -15,4 +15,5 @@ public:
     virtual bool interact(Item &entity) = 0;
 };
 
+
 #endif //ENTITY_H

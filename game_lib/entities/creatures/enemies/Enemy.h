@@ -8,4 +8,5 @@ public:
     Enemy(float hp, float dmg, float armor) : Creature(hp, dmg, armor) {}
 };
 
+
 #endif //ENEMY_H

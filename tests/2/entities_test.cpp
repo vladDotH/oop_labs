@@ -9,13 +9,8 @@
 #include "entities/items/Item.h"
 #include "entities/creatures/enemies/Enemy.h"
 #include "entities/creatures/CreatureFactory.h"
-#include "entities/creatures/enemies/HeavyFactory.h"
-#include "entities/creatures/enemies/MediumFactory.h"
-#include "entities/creatures/enemies/LightFactory.h"
+#include "entities/creatures/enemies/EnemyFactory.h"
 #include "entities/items/ItemFactory.h"
-#include "entities/items/HealerFactory.h"
-#include "entities/items/ArmorFactory.h"
-#include "entities/items/WeaponFactory.h"
 
 using namespace std;
 

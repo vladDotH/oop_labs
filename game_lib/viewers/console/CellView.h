@@ -16,4 +16,5 @@ public:
     char getChar(const AbstractCell &c) override;
 };
 
+
 #endif //CELLVIEW_H

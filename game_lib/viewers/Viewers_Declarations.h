@@ -4,4 +4,5 @@
 class FieldView;
 class ConsoleFieldView;
 
+
 #endif //VIEWERS_DECLARATIONS_H

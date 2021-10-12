@@ -8,4 +8,5 @@ public:
     virtual std::shared_ptr<Entity> build() = 0;
 };
 
+
 #endif //ENTITYABSTRACTFACTORY_H

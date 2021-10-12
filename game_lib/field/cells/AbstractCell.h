@@ -27,4 +27,5 @@ public:
     virtual ~AbstractCell() = default;
 };
 
+
 #endif //ABSTRACTCELL_H

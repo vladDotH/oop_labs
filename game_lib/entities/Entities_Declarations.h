@@ -7,4 +7,5 @@ class Item;
 class Enemy;
 class Player;
 
+
 #endif //ENTITIES_DECLARATIONS_H

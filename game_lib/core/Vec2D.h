@@ -43,4 +43,5 @@ struct Vec2D {
 
 extern const Vec2D null, one;
 
+
 #endif //POINT_H
