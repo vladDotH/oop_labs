@@ -1,6 +1,6 @@
 #include "EntityView.h"
 
-EntityView::EntityView() : ConsoleObjectViewer<Entity>(
+EntityView::EntityView() : ConsoleObjectView<Entity>(
         {
                 {typeid(Enemy).hash_code(),  'e'},
                 {typeid(Player).hash_code(), 'p'},

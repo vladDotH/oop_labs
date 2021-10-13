@@ -12,6 +12,8 @@ public:
 
     void show(std::ostream &os);
 
+    void showInfo(std::ostream &os);
+
     friend std::ostream &operator<<(std::ostream &os, ConsoleFieldView &fv);
 };
 

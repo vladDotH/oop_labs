@@ -5,11 +5,11 @@
 #include "../../field/cells/Wall.h"
 #include "../../field/cells/Exit.h"
 #include "../../field/cells/Entrance.h"
-#include "ConsoleObjectViewer.h"
+#include "ConsoleObjectView.h"
 #include <map>
 #include <memory>
 
-class CellView : public ConsoleObjectViewer<AbstractCell> {
+class CellView : public ConsoleObjectView<AbstractCell> {
 public:
     CellView();
 

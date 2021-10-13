@@ -1,6 +1,6 @@
 #include "CellView.h"
 
-CellView::CellView() : ConsoleObjectViewer<AbstractCell>(
+CellView::CellView() : ConsoleObjectView<AbstractCell>(
         {
                 {typeid(Cell).hash_code(),     ' '},
                 {typeid(Wall).hash_code(),     '#'},

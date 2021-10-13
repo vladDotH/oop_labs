@@ -21,7 +21,7 @@ set(LIB_SRC
         viewers/Viewers_Declarations.h
         viewers/FieldView.h
         viewers/console/EntityView.cpp viewers/console/EntityView.h
-        viewers/console/ConsoleObjectViewer.h
+        viewers/console/ConsoleObjectView.h
         viewers/console/ConsoleFieldView.h viewers/console/ConsoleFieldView.cpp
         viewers/console/CellView.h viewers/console/CellView.cpp
 
