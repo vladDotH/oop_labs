@@ -2,7 +2,6 @@
 
 void ConsoleFieldView::show(std::ostream &os) {
     if (!field.expired()) {
-        os << "size:" << field.lock()->size << " cells: " << field.lock()->cells.get() << '\n';
         if (field.lock()->cells != nullptr) {
             for (int i = 0; i < field.lock()->size.y; ++i) {
                 for (int j = 0; j < field.lock()->size.x; ++j) {
@@ -20,4 +19,9 @@ void ConsoleFieldView::show(std::ostream &os) {
 std::ostream &operator<<(std::ostream &os, ConsoleFieldView &fv) {
     fv.show(os);
     return os;
+}
+
+void ConsoleFieldView::showInfo(std::ostream &os) {
+    if (!field.expired())
+        os << "size:" << field.lock()->size << " cells: " << field.lock()->cells.get() << '\n';
 }
