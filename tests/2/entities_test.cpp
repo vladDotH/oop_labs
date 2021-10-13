@@ -15,7 +15,11 @@
 using namespace std;
 
 int main() {
-    shared_ptr<Field> f = FieldBuilder().setSize({10, 10}).setType(FieldBuilder::BOX).build();
+    shared_ptr<Field> f = FieldBuilder()
+            .setSize({10, 10})
+            .setType(FieldBuilder::BOX)
+            .build();
+
     ConsoleFieldView fv(f);
 
     shared_ptr<Entity> player = make_shared<Player>();
@@ -31,33 +35,38 @@ int main() {
 
     cout << fv;
 
-    f->get({1,1}).putEntity(player);
-    f->get({5,5}).putEntity(e1);
-    f->get({5,6}).putEntity(e2);
-    f->get({6,5}).putEntity(e3);
+    f->get({1, 1}).putEntity(player);
+    f->get({5, 5}).putEntity(e1);
+    f->get({5, 6}).putEntity(e2);
+    f->get({6, 5}).putEntity(e3);
     f->get({3, 3}).putEntity(i1);
     f->get({6, 3}).putEntity(i2);
     f->get({3, 6}).putEntity(i3);
 
     cout << fv;
-    cout << (dynamic_cast<Player*>(player.get()))->getHp() << endl;
+    cout << (dynamic_cast<Player *>(player.get()))->getHp() << endl;
 
-    f->get({1,1}).moveTo(f->get({3,3}));
-
-    cout << fv;
-    cout << (dynamic_cast<Player*>(player.get()))->getHp() << endl;
-    cout << (dynamic_cast<Enemy*>(e1.get()))->getHp() << endl;
-
-    f->get({3,3}).moveTo(f->get({5,5}));
+    f->get({1, 1}).moveTo(f->get({2, 2}));
 
     cout << fv;
-    cout << (dynamic_cast<Player*>(player.get()))->getHp() << endl;
-    cout << (dynamic_cast<Enemy*>(e1.get()))->getHp() << endl;
+    cout << (dynamic_cast<Player *>(player.get()))->getHp() << endl;
 
-    f->get({3,3}).moveTo(f->get({5,5}));
+    f->get({2, 2}).moveTo(f->get({3, 3}));
 
     cout << fv;
-    cout << (dynamic_cast<Player*>(player.get()))->getHp() << endl;
-    cout << (dynamic_cast<Enemy*>(e1.get()))->getHp() << endl;
+    cout << (dynamic_cast<Player *>(player.get()))->getHp() << endl;
+    cout << (dynamic_cast<Enemy *>(e1.get()))->getHp() << endl;
+
+    f->get({3, 3}).moveTo(f->get({5, 5}));
+
+    cout << fv;
+    cout << (dynamic_cast<Player *>(player.get()))->getHp() << endl;
+    cout << (dynamic_cast<Enemy *>(e1.get()))->getHp() << endl;
+
+    f->get({3, 3}).moveTo(f->get({5, 5}));
+
+    cout << fv;
+    cout << (dynamic_cast<Player *>(player.get()))->getHp() << endl;
+    cout << (dynamic_cast<Enemy *>(e1.get()))->getHp() << endl;
 
 }

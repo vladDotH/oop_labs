@@ -14,10 +14,12 @@ public:
                 this->entity = entity;
                 return true;
             }
+
+            return false;
         } else {
             this->entity = entity;
+            return true;
         }
-        return false;
     }
 
 

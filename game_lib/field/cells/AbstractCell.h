@@ -15,7 +15,7 @@ public:
     }
 
     bool moveTo(AbstractCell &cell) {
-        if (!entity.expired() && cell.putEntity(entity.lock())) {
+        if (this != &cell && !entity.expired() && cell.putEntity(entity.lock())) {
             entity.reset();
             return true;
         }
