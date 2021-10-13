@@ -69,4 +69,14 @@ int main() {
     cout << (dynamic_cast<Player *>(player.get()))->getHp() << endl;
     cout << (dynamic_cast<Enemy *>(e1.get()))->getHp() << endl;
 
+    f->get({5, 5}).moveTo(f->get({3, 3}));
+    cout << fv;
+
+    f->get({3, 3}).moveTo(f->get({5, 5}));
+    cout << fv;
+
+    f->get({5, 5}).moveTo(f->get({8, 8}));
+    cout << fv;
+
+    cout << typeid(*(f->get({8, 8}).getEntity().lock())).name();
 }
