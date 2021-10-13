@@ -1,10 +1,10 @@
 #ifndef ITEMFACTORY_H
 #define ITEMFACTORY_H
 
-#include "entities/EntityAbstractFactory.h"
+#include "entities/EntityFactory.h"
 #include <functional>
 
-class ItemFactory : public EntityAbstractFactory {
+class ItemFactory : public EntityFactory {
 protected:
     std::function<bool(Creature &)> action;
 

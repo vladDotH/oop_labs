@@ -19,7 +19,7 @@ int main() {
     ConsoleFieldView fv(f);
 
     shared_ptr<Entity> player = make_shared<Player>();
-    shared_ptr<EntityAbstractFactory> lf = make_shared<LightFactory>(), hp = make_shared<HealerFactory>(100);
+    shared_ptr<EntityFactory> lf = make_shared<LightFactory>(), hp = make_shared<HealerFactory>(100);
 
     shared_ptr<Entity>
             e1 = lf->build(),

@@ -1,9 +1,9 @@
 #ifndef CREATUREFACTORY_H
 #define CREATUREFACTORY_H
 
-#include "../EntityAbstractFactory.h"
+#include "../EntityFactory.h"
 
-class CreatureFactory : public EntityAbstractFactory {
+class CreatureFactory : public EntityFactory {
 protected:
     float hp, dmg, armor;
 
