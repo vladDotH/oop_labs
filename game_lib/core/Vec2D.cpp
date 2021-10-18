@@ -1,6 +1,12 @@
 #include "Vec2D.h"
 
-const Vec2D null(0, 0), one(1, 1);
+const Vec2D
+        null(0, 0),
+        one(1, 1),
+        up(0, -1),
+        down(0, 1),
+        rigth(1, 0),
+        left(-1, 0);
 
 bool operator==(Vec2D v1, Vec2D v2) {
     return v1.x == v2.x && v1.y == v2.y;

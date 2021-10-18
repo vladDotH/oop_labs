@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.15)
 project(game_lib)
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(core entities field viewers viewers/console field/cells game)
+include_directories(core entities field viewers viewers/console field/cells controllers ../game)
 
 set(LIB_SRC
         core/Vec2D.h core/Vec2D.cpp
@@ -25,7 +25,7 @@ set(LIB_SRC
         viewers/console/ConsoleFieldView.h viewers/console/ConsoleFieldView.cpp
         viewers/console/CellView.h viewers/console/CellView.cpp
 
-        game/Game.h game/Game.cpp
+        controllers/BaseController.h controllers/EnemyController.h controllers/PlayerController.h
         )
 
 add_library(game_lib STATIC ${LIB_SRC})

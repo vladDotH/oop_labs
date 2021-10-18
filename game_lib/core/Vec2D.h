@@ -41,7 +41,7 @@ struct Vec2D {
     friend std::ostream &operator<<(std::ostream &os, const Vec2D &vector);
 };
 
-extern const Vec2D null, one;
+extern const Vec2D null, one, up, down, right, left;
 
 
 #endif //POINT_H

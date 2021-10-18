@@ -26,6 +26,7 @@ private:
     void move(Field &&f);
 
 public:
+    Vec2D getSize();
 
     Field(Vec2D size);
 

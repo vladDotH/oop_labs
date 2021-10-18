@@ -1,5 +1,9 @@
 #include "Field.h"
 
+Vec2D Field::getSize() {
+    return size;
+}
+
 AbstractCell &Field::get(Vec2D p) {
     if (!(p < size && p >= null))
         throw std::out_of_range("cell index error");
@@ -13,6 +17,8 @@ AbstractCell &Field::operator[](Vec2D p) {
 }
 
 Field::Field(Vec2D size) : size(size) {
+    if (size <= null)
+        throw std::invalid_argument("bad field size");
     cells = std::make_unique<std::unique_ptr<std::unique_ptr<AbstractCell>[]>[]>(size.y);
     for (int i = 0; i < size.y; ++i) {
         cells[i] = std::make_unique<std::unique_ptr<AbstractCell>[]>(size.x);
