@@ -25,7 +25,7 @@ int main() {
     l->setLvl(Level::INFO);
     *l << Log(Level::WARN, "log warn");
     *l << Log(Level::DEBUG, "log debug");
-    *l << error("log error");
+    *l << debug("log error");
     Level lv = Level::INFO;
     cout << lv.toString();
 }

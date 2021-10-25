@@ -4,6 +4,7 @@
 #include <map>
 
 struct Level {
+public:
     enum _Level_ {
         OFF,
         ERROR,
@@ -14,16 +15,16 @@ struct Level {
     } value;
 
     std::string toString() {
-        return NAMES[value];
+        return NAMES.at(value);
     }
 
     Level(Level::_Level_ value) : value(value) {}
 
 private:
-    static std::map<int, std::string> NAMES;
+    static const std::map<int, std::string> NAMES;
 };
 
-std::map<int, std::string> Level::NAMES = {
+const std::map<int, std::string> Level::NAMES = {
         {OFF,   "OFF"},
         {ERROR, "ERROR"},
         {WARN,  "WARN"},

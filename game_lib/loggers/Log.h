@@ -17,21 +17,10 @@ public:
     }
 };
 
-Log error(std::string msg) {
-    return Log(Level::ERROR, msg);
-}
-
-Log warn(std::string msg) {
-    return Log(Level::WARN, msg);
-}
-
-Log info(std::string msg) {
-    return Log(Level::INFO, msg);
-}
-
-Log debug(std::string msg) {
-    return Log(Level::DEBUG, msg);
-}
+#define error(msg) Log(Level::ERROR, msg)
+#define warn(msg) Log(Level::WARN, msg)
+#define info(msg) Log(Level::INFO, msg)
+#define debug(msg) Log(Level::DEBUG, msg)
 
 
 #endif //LOG_H
