@@ -26,6 +26,8 @@ set(LIB_SRC
         viewers/console/CellView.h viewers/console/CellView.cpp
 
         controllers/BaseController.h controllers/EnemyController.h controllers/PlayerController.h
+
+        loggers/Log.h loggers/Logger.h loggers/ConsoleLogger.h loggers/FileLogger.h
         )
 
 add_library(game_lib STATIC ${LIB_SRC})

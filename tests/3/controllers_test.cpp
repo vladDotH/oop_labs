@@ -14,9 +14,18 @@
 #include "controllers/BaseController.h"
 #include "controllers/PlayerController.h"
 #include "controllers/EnemyController.h"
+#include "loggers/Logger.h"
+#include "loggers/ConsoleLogger.h"
+#include "loggers/FileLogger.h"
 
 using namespace std;
 
 int main() {
-
+    auto l = make_shared<FileLogger>("out.txt");
+    l->setLvl(Level::INFO);
+    *l << Log(Level::WARN, "log warn");
+    *l << Log(Level::DEBUG, "log debug");
+    *l << error("log error");
+    Level lv = Level::INFO;
+    cout << lv.toString();
 }

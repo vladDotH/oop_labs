@@ -32,10 +32,10 @@ void FieldBuilder::box_generation(Field &f) {
 std::shared_ptr<Field> FieldBuilder::build() {
     auto f = std::make_shared<Field>(size);
     switch (type) {
-        case DEFAULT:
+        case Type::DEFAULT:
             default_generation(*f);
             break;
-        case BOX:
+        case Type::BOX:
             box_generation(*f);
             break;
     }

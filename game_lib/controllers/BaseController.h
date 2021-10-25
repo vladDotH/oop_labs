@@ -6,7 +6,7 @@
 #include "../entities/Entity.h"
 #include "memory"
 
-template<class T, typename std::enable_if<std::is_base_of<Entity, T>::value, void **>::type * = nullptr>
+template<class T, typename std::enable_if<std::is_base_of<Entity, T>::value, void *>::type * = nullptr>
 class BaseController {
 protected:
     Vec2D pos;

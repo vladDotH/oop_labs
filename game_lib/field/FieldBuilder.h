@@ -10,7 +10,7 @@
 
 class FieldBuilder {
 public:
-    enum Type {
+    enum class Type {
         DEFAULT,
         BOX
     };
