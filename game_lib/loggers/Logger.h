@@ -13,7 +13,7 @@ public:
     Logger(Level lvl = Level::ALL) : lvl(lvl) {}
 
     void setLvl(Level lvl) {
-        Logger::lvl = lvl;
+        this->lvl = lvl;
     }
 
     Logger &operator<<(Log l) {
