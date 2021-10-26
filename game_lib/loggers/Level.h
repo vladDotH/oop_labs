@@ -4,7 +4,6 @@
 #include <map>
 
 struct Level {
-public:
     enum _Level_ {
         OFF,
         ERROR,

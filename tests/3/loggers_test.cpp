@@ -17,9 +17,34 @@
 #include "loggers/Logger.h"
 #include "loggers/ConsoleLogger.h"
 #include "loggers/FileLogger.h"
+#include "loggers/Loggable.h"
 
 using namespace std;
 
-int main() {
+class A : public Loggable {
+public:
+    void f() {
+        notify(info("function f called\n"));
+    }
+};
 
+int main() {
+    auto l = make_shared<FileLogger>("out.txt");
+    l->setLvl(Level::INFO);
+    *l << Log(Level::WARN, "log warn\n");
+    *l << Log(Level::DEBUG, "log debug\n");
+    *l << debug("log error\n");
+    Level lv = Level::INFO;
+    cout << lv.toString() << endl;
+
+    shared_ptr<Logger>
+            l1 = make_shared<FileLogger>("log.txt"),
+            l2 = make_shared<ConsoleLogger>(cout);
+    A a;
+    cout << a.addLogger(l1) << endl;
+    cout << a.addLogger(l2) << endl;
+    cout << a.addLogger(l1) << endl;
+    cout << a.addLogger(l2) << endl;
+
+    a.f();
 }

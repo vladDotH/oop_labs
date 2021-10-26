@@ -28,7 +28,7 @@ set(LIB_SRC
         controllers/BaseController.h controllers/EnemyController.h controllers/PlayerController.h
 
         loggers/Log.h loggers/Logger.h loggers/ConsoleLogger.h loggers/FileLogger.h
-        )
+        loggers/Loggable.h)
 
 add_library(game_lib STATIC ${LIB_SRC})
 

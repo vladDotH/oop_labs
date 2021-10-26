@@ -6,7 +6,6 @@
 #include "Level.h"
 
 struct Log {
-public:
     Level lvl;
     std::time_t stamp;
     std::string msg;
