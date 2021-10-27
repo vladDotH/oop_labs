@@ -3,6 +3,7 @@
 
 #include "Format.h"
 #include "../LogTimer.h"
+#include "TagFormat.h"
 #include <chrono>
 
 class TimeFormat : public Format {
@@ -11,9 +12,11 @@ public:
     TimeFormat(std::chrono::time_point<std::chrono::steady_clock> start = LogTimer::get()) : stamp(start) {}
 
     Log wrap(Log l) override {
-        return Log(l.lvl, "[" + std::to_string(
-                std::chrono::duration_cast<std::chrono::milliseconds>(l.stamp - LogTimer::get()).count()) + "ms]"
-                          + l.msg);
+        return TagFormat(
+                std::to_string(
+                        std::chrono::duration_cast<std::chrono::milliseconds>(l.stamp - LogTimer::get()).count()) +
+                "ms").wrap(l);
+
     }
 };
 
