@@ -23,15 +23,27 @@
 
 using namespace std;
 
-int main() {
-    shared_ptr<Logger> l = make_shared<ConsoleLogger>();
-    l->setFmt(make_shared<TimeFormat>());
-    l->setLvl(Level::ALL);
-    *l << Log(Level::WARN, "log warn");
-    *l << Log(Level::DEBUG, "log debug");
-    *l << error("log error");
-    Level lv = Level::INFO;
-    cout << lv.toString() << endl;
+class A : public Loggable {
+public:
+    void f() {
+        notify(info("function f called"));
+    }
+};
 
-    *l << info("program end");
+int main() {
+    shared_ptr<Logger>
+            l1 = make_shared<FileLogger>("log.txt"),
+            l2 = make_shared<ConsoleLogger>(cout);
+    A a;
+    cout << a.addLogger(l1) << endl;
+    cout << a.addLogger(l2) << endl;
+    cout << a.addLogger(l1) << endl;
+    cout << a.addLogger(l2) << endl;
+
+    a.f();
+
+    cout << a.removeLogger(l2) << endl;
+    cout << a.removeLogger(l2) << endl;
+
+    a.f();
 }

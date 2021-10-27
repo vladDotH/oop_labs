@@ -3,10 +3,11 @@
 
 #include <memory>
 #include <iostream>
-#include "Entities_Declarations.h"
+#include "entities_declarations.h"
 #include "../core/Cloneable.h"
+#include "../loggers/Loggable.h"
 
-class Entity : public Cloneable<std::shared_ptr<Entity>> {
+class Entity : public Cloneable<std::shared_ptr<Entity>>, public Loggable {
 public:
     virtual bool interact(std::shared_ptr<Entity> entity) = 0;
 

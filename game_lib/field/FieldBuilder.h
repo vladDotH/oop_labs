@@ -7,8 +7,9 @@
 #include "cells/Entrance.h"
 #include "cells/Exit.h"
 #include "Field.h"
+#include "../loggers/Loggable.h"
 
-class FieldBuilder {
+class FieldBuilder : public Loggable {
 public:
     enum class Type {
         DEFAULT,

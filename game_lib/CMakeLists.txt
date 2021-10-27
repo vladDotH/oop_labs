@@ -8,7 +8,7 @@ set(LIB_SRC
         core/Vec2D.h core/Vec2D.cpp
         core/Cloneable.h
 
-        entities/Entities_Declarations.h
+        entities/entities_declarations.h
         entities/Entity.h
         entities/creatures/Creature.h entities/creatures/enemies/Enemy.h entities/items/Item.h entities/creatures/Player.h
         entities/EntityFactory.h entities/creatures/CreatureFactory.h entities/items/ItemFactory.h entities/creatures/enemies/EnemyFactory.h
@@ -18,7 +18,7 @@ set(LIB_SRC
         field/Field.cpp field/Field.h
         field/FieldBuilder.h field/FieldBuilder.cpp
 
-        viewers/Viewers_Declarations.h
+        viewers/viewers_declarations.h
         viewers/FieldView.h
         viewers/console/EntityView.cpp viewers/console/EntityView.h
         viewers/console/ConsoleObjectView.h
@@ -27,8 +27,10 @@ set(LIB_SRC
 
         controllers/BaseController.h controllers/EnemyController.h controllers/PlayerController.h
 
+        loggers/Level.cpp loggers/Level.h
         loggers/Log.h loggers/Logger.h loggers/ConsoleLogger.h loggers/FileLogger.h
-        loggers/Loggable.h)
+        loggers/Loggable.h loggers/LogTimer.h loggers/LogTimer.cpp
+        loggers/formats/Format.h loggers/formats/TagFormat.h loggers/formats/TimeFormat.h loggers/formats/EmptyFormat.h  )
 
 add_library(game_lib STATIC ${LIB_SRC})
 

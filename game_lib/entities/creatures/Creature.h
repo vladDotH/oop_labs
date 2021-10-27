@@ -8,13 +8,14 @@ protected:
     float hp, dmg, armor;
 
     bool interact(Creature &entity) override {
-        std::cout << "creature with creature\n";
         float d = -dmg + entity.armor;
+        notify(debug("creature interacted with creature with resulting dmg:" + std::to_string(d) + ", it`s hp:" +
+                     std::to_string(entity.getHp())));
         return entity.updHp(d < 0 ? d : 0) > 0;
     }
 
     bool interact(Item &entity) override {
-        std::cout << "creature with item\n";
+        notify(debug("creature interacted with item"));
         return false;
     }
 

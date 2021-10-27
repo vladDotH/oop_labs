@@ -11,18 +11,23 @@
 #include "entities/creatures/CreatureFactory.h"
 #include "entities/creatures/enemies/EnemyFactory.h"
 #include "entities/items/ItemFactory.h"
+#include "loggers/FileLogger.h"
 
 using namespace std;
 
 int main() {
+    shared_ptr<Logger> lg = make_shared<FileLogger>("log.txt");
     shared_ptr<Field> f = FieldBuilder()
             .setSize({10, 10})
-            .setType(FieldBuilder::BOX)
+            .setType(FieldBuilder::Type::BOX)
             .build();
+    f->addLogger(lg);
 
     ConsoleFieldView fv(f);
 
     shared_ptr<Entity> player = make_shared<Player>();
+    player->addLogger(lg);
+
     shared_ptr<EntityFactory> lf = make_shared<LightFactory>(), hp = make_shared<HealerFactory>(100);
 
     shared_ptr<Entity>

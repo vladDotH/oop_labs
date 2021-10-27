@@ -23,14 +23,5 @@ private:
     static const std::map<int, std::string> NAMES;
 };
 
-const std::map<int, std::string> Level::NAMES = {
-        {OFF,   "OFF"},
-        {ERROR, "ERROR"},
-        {WARN,  "WARN"},
-        {INFO,  "INFO"},
-        {DEBUG, "DEBUG"},
-        {ALL,   "ALL"}
-};
-
 
 #endif //LEVEL_H

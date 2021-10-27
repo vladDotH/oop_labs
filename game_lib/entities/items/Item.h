@@ -10,12 +10,13 @@ protected:
 
     bool interact(Creature &entity) override {
         action(entity);
-        std::cout << "item with creature\n";
+        notify(debug("item interacted with creature"));
         return true;
     }
 
     bool interact(Item &entity) override {
         std::cout << "item with item\n";
+        notify(warn("item interacted with item"));
         return true;
     }
 

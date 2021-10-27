@@ -2,15 +2,15 @@
 #define LOG_H
 
 #include <string>
-#include <ctime>
+#include <chrono>
 #include "Level.h"
 
 struct Log {
     Level lvl;
-    std::time_t stamp;
+    std::chrono::time_point<std::chrono::steady_clock> stamp;
     std::string msg;
 
-    Log(Level lvl, std::string msg) : lvl(lvl), msg(msg), stamp(std::time(nullptr)) {
+    Log(Level lvl, std::string msg) : lvl(lvl), msg(msg), stamp(std::chrono::steady_clock::now()) {
         if (lvl.value <= Level::OFF || lvl.value >= Level::ALL)
             throw std::invalid_argument("bad log level");
     }

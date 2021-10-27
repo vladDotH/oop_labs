@@ -5,10 +5,11 @@
 #include <utility>
 #include "cells/AbstractCell.h"
 #include "../core/Vec2D.h"
-#include "../viewers/Viewers_Declarations.h"
+#include "../viewers/viewers_declarations.h"
 #include <memory>
+#include "../loggers/Loggable.h"
 
-class Field {
+class Field : public Loggable {
     friend class FieldView;
 
     friend class ConsoleFieldView;
@@ -43,6 +44,11 @@ public:
     Field &operator=(Field &&f);
 
     virtual ~Field();
+
+    bool addLogger(std::shared_ptr<Logger> logger) override;
+
+    bool removeLogger(std::shared_ptr<Logger> logger) override;
+
 };
 
 

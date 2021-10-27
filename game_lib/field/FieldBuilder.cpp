@@ -12,8 +12,10 @@ void FieldBuilder::default_generation(Field &f) {
 }
 
 void FieldBuilder::box_generation(Field &f) {
-    if (!(size >= one * 4))
-        throw std::invalid_argument("too small field");
+    if (!(size >= one * 4)) {
+        notify(error("too small size for box generation"));
+        throw std::invalid_argument("too small size");
+    }
 
     f.cells[1][1] = std::make_unique<Entrance>();
     f.cells[size.y - 2][size.x - 2] = std::make_unique<Exit>();
@@ -39,6 +41,7 @@ std::shared_ptr<Field> FieldBuilder::build() {
             box_generation(*f);
             break;
     }
+    notify(debug("field has been built"));
     return f;
 }
 
