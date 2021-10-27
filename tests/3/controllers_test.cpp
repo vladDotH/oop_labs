@@ -14,9 +14,9 @@
 #include "controllers/BaseController.h"
 #include "controllers/PlayerController.h"
 #include "controllers/EnemyController.h"
-#include "loggers/Logger.h"
-#include "loggers/ConsoleLogger.h"
-#include "loggers/FileLogger.h"
+#include "logging/loggers/Logger.h"
+#include "logging/loggers/ConsoleLogger.h"
+#include "logging/loggers/FileLogger.h"
 
 using namespace std;
 

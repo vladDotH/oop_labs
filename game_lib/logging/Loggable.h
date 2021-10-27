@@ -1,7 +1,7 @@
 #ifndef LOGGABLE_H
 #define LOGGABLE_H
 
-#include "Logger.h"
+#include "loggers/Logger.h"
 #include <set>
 #include <memory>
 #include <algorithm>

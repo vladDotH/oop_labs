@@ -11,12 +11,14 @@
 #include "entities/creatures/CreatureFactory.h"
 #include "entities/creatures/enemies/EnemyFactory.h"
 #include "entities/items/ItemFactory.h"
-#include "loggers/FileLogger.h"
+#include "logging/loggers/FileLogger.h"
+#include "logging/formats/TimeFormat.h"
 
 using namespace std;
 
 int main() {
     shared_ptr<Logger> lg = make_shared<FileLogger>("log.txt");
+    lg->setFmt(make_shared<TimeFormat>());
     shared_ptr<Field> f = FieldBuilder()
             .setSize({10, 10})
             .setType(FieldBuilder::Type::BOX)

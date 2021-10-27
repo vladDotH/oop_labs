@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.15)
 project(game_lib)
 set(CMAKE_CXX_STANDARD 17)
 
-include_directories(core entities field viewers viewers/console field/cells controllers ../game)
+include_directories(core entities field viewers viewers/console field/cells controllers logging logging/loggers ../game)
 
 set(LIB_SRC
         core/Vec2D.h core/Vec2D.cpp
@@ -27,10 +27,10 @@ set(LIB_SRC
 
         controllers/BaseController.h controllers/EnemyController.h controllers/PlayerController.h
 
-        loggers/Level.cpp loggers/Level.h
-        loggers/Log.h loggers/Logger.h loggers/ConsoleLogger.h loggers/FileLogger.h
-        loggers/Loggable.h loggers/LogTimer.h loggers/LogTimer.cpp
-        loggers/formats/Format.h loggers/formats/TagFormat.h loggers/formats/TimeFormat.h loggers/formats/EmptyFormat.h  )
+        logging/Level.cpp logging/Level.h
+        logging/Log.h logging/loggers/Logger.h logging/loggers/ConsoleLogger.h logging/loggers/FileLogger.h
+        logging/Loggable.h logging/LogTimer.h logging/LogTimer.cpp
+        logging/formats/Format.h logging/formats/TagFormat.h logging/formats/TimeFormat.h logging/formats/EmptyFormat.h)
 
 add_library(game_lib STATIC ${LIB_SRC})
 

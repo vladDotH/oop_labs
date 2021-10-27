@@ -5,7 +5,7 @@
 #include <iostream>
 #include "entities_declarations.h"
 #include "../core/Cloneable.h"
-#include "../loggers/Loggable.h"
+#include "../logging/Loggable.h"
 
 class Entity : public Cloneable<std::shared_ptr<Entity>>, public Loggable {
 public:

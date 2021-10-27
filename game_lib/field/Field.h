@@ -7,7 +7,7 @@
 #include "../core/Vec2D.h"
 #include "../viewers/viewers_declarations.h"
 #include <memory>
-#include "../loggers/Loggable.h"
+#include "../logging//Loggable.h"
 
 class Field : public Loggable {
     friend class FieldView;

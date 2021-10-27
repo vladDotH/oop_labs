@@ -14,12 +14,12 @@
 #include "controllers/BaseController.h"
 #include "controllers/PlayerController.h"
 #include "controllers/EnemyController.h"
-#include "loggers/Logger.h"
-#include "loggers/ConsoleLogger.h"
-#include "loggers/FileLogger.h"
-#include "loggers/Loggable.h"
-#include "loggers/formats/TagFormat.h"
-#include "loggers/formats/TimeFormat.h"
+#include "logging/loggers/Logger.h"
+#include "logging/loggers/ConsoleLogger.h"
+#include "logging/loggers/FileLogger.h"
+#include "logging/Loggable.h"
+#include "logging/formats/TagFormat.h"
+#include "logging/formats/TimeFormat.h"
 
 using namespace std;
 

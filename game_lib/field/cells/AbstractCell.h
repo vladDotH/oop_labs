@@ -4,7 +4,7 @@
 #include <memory>
 #include "../../entities/Entity.h"
 #include "../../core/Cloneable.h"
-#include "../../loggers/Loggable.h"
+#include "../../logging/Loggable.h"
 
 class AbstractCell : public Cloneable<std::unique_ptr<AbstractCell>>, public Loggable {
 protected:

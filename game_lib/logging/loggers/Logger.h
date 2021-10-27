@@ -1,10 +1,10 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
-#include "Log.h"
+#include "../Log.h"
 #include <memory>
-#include "formats/Format.h"
-#include "formats/EmptyFormat.h"
+#include "../formats/Format.h"
+#include "../formats/EmptyFormat.h"
 
 class Logger {
 protected:

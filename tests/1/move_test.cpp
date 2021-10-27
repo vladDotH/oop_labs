@@ -2,8 +2,8 @@
 #include <viewers/console/ConsoleFieldView.h>
 #include <field/FieldBuilder.h>
 #include "field/Field.h"
-#include "loggers/FileLogger.h"
-#include "loggers/formats/TimeFormat.h"
+#include "logging/loggers/FileLogger.h"
+#include "logging/formats/TimeFormat.h"
 
 using namespace std;
 
