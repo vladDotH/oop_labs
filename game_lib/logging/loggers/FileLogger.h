@@ -9,7 +9,8 @@ private:
     std::ofstream f;
 
 public:
-    FileLogger(std::string fName, Level lvl = Level::ALL) : Logger(lvl) {
+    FileLogger(std::string fName, Level lvl = Level::ALL,
+               std::shared_ptr<Format> fmt = std::make_shared<EmptyFormat>()) : Logger(lvl, fmt) {
         f.open(fName);
     }
 
