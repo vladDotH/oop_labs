@@ -1,6 +1,6 @@
-#include "Level.h"
+#include "LogLevel.h"
 
-const std::map<int, std::string> Level::NAMES = {
+const std::map<int, std::string> LogLevel::NAMES = {
         {OFF,   "OFF"},
         {ERROR, "ERROR"},
         {WARN,  "WARN"},

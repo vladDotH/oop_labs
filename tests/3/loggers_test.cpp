@@ -26,11 +26,11 @@ using namespace std;
 int main() {
     shared_ptr<Logger> l = make_shared<ConsoleLogger>();
     l->setFmt(make_shared<TimeFormat>());
-    l->setLvl(Level::ALL);
-    *l << Log(Level::WARN, "log warn");
-    *l << Log(Level::DEBUG, "log debug");
+    l->setLvl(LogLevel::ALL);
+    *l << Log(LogLevel::WARN, "log warn");
+    *l << Log(LogLevel::DEBUG, "log debug");
     *l << error("log error");
-    Level lv = Level::INFO;
+    LogLevel lv = LogLevel::INFO;
     cout << lv.toString() << endl;
 
     *l << info("program end");

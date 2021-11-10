@@ -1,10 +1,10 @@
-#ifndef LEVEL_H
-#define LEVEL_H
+#ifndef LOGLEVEL_H
+#define LOGLEVEL_H
 
 #include <map>
 
-struct Level {
-    enum _Level_ {
+struct LogLevel {
+    enum _LogLevel_ {
         OFF,
         ERROR,
         WARN,
@@ -17,11 +17,11 @@ struct Level {
         return NAMES.at(value);
     }
 
-    Level(Level::_Level_ value) : value(value) {}
+    LogLevel(LogLevel::_LogLevel_ value) : value(value) {}
 
 private:
     static const std::map<int, std::string> NAMES;
 };
 
 
-#endif //LEVEL_H
+#endif //LOGLEVEL_H

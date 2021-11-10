@@ -9,7 +9,7 @@ private:
     std::ostream &os;
 
 public:
-    ConsoleLogger(std::ostream &os = std::cout, Level lvl = Level::ALL,
+    ConsoleLogger(std::ostream &os = std::cout, LogLevel lvl = LogLevel::ALL,
                   std::shared_ptr<Format> fmt = std::make_shared<EmptyFormat>()) : os(os), Logger(lvl, fmt) {}
 
 protected:

@@ -15,7 +15,6 @@ protected:
     }
 
     bool interact(Item &entity) override {
-        std::cout << "item with item\n";
         notify(warn("item interacted with item"));
         return true;
     }

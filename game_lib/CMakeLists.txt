@@ -27,7 +27,7 @@ set(LIB_SRC
 
         controllers/BaseController.h controllers/EnemyController.h controllers/PlayerController.h
 
-        logging/Level.cpp logging/Level.h
+        logging/LogLevel.cpp logging/LogLevel.h
         logging/Log.h logging/loggers/Logger.h logging/loggers/ConsoleLogger.h logging/loggers/FileLogger.h
         logging/Loggable.h logging/LogTimer.h logging/LogTimer.cpp
         logging/formats/Format.h logging/formats/TagFormat.h logging/formats/TimeFormat.h logging/formats/EmptyFormat.h)

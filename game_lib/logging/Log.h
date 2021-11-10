@@ -3,23 +3,23 @@
 
 #include <string>
 #include <chrono>
-#include "Level.h"
+#include "LogLevel.h"
 
 struct Log {
-    Level lvl;
+    LogLevel lvl;
     std::chrono::time_point<std::chrono::steady_clock> stamp;
     std::string msg;
 
-    Log(Level lvl, std::string msg) : lvl(lvl), msg(msg), stamp(std::chrono::steady_clock::now()) {
-        if (lvl.value <= Level::OFF || lvl.value >= Level::ALL)
+    Log(LogLevel lvl, std::string msg) : lvl(lvl), msg(msg), stamp(std::chrono::steady_clock::now()) {
+        if (lvl.value <= LogLevel::OFF || lvl.value >= LogLevel::ALL)
             throw std::invalid_argument("bad log level");
     }
 };
 
-#define error(msg) Log(Level::ERROR, msg)
-#define warn(msg) Log(Level::WARN, msg)
-#define info(msg) Log(Level::INFO, msg)
-#define debug(msg) Log(Level::DEBUG, msg)
+#define error(msg) Log(LogLevel::ERROR, msg)
+#define warn(msg) Log(LogLevel::WARN, msg)
+#define info(msg) Log(LogLevel::INFO, msg)
+#define debug(msg) Log(LogLevel::DEBUG, msg)
 
 
 #endif //LOG_H

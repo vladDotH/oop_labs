@@ -8,15 +8,15 @@
 
 class Logger {
 protected:
-    Level lvl;
+    LogLevel lvl;
     std::shared_ptr<Format> fmt;
 
     virtual void log(Log l) = 0;
 
 public:
-    Logger(Level lvl = Level::ALL, std::shared_ptr<Format> fmt = std::make_shared<EmptyFormat>()) : lvl(lvl), fmt(fmt) {}
+    Logger(LogLevel lvl = LogLevel::ALL, std::shared_ptr<Format> fmt = std::make_shared<EmptyFormat>()) : lvl(lvl), fmt(fmt) {}
 
-    void setLvl(Level lvl) {
+    void setLvl(LogLevel lvl) {
         this->lvl = lvl;
     }
 
