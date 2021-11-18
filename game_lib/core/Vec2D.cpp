@@ -64,7 +64,11 @@ Vec2D operator*(int c, Vec2D v) {
     return v * c;
 }
 
-std::ostream &operator<<(std::ostream &os, const Vec2D &vector) {
-    os << "x: " << vector.x << " y: " << vector.y;
+std::ostream &operator<<(std::ostream &os, const Vec2D &v) {
+    os << v.toString();
     return os;
+}
+
+std::string Vec2D::toString() const {
+    return "x: " + std::to_string(x) + " y: " + std::to_string(y);
 }

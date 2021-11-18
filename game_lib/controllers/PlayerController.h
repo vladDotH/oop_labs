@@ -5,7 +5,12 @@
 #include "../entities/creatures/Player.h"
 
 class PlayerController : public BaseController<Player> {
+public:
+    PlayerController(std::shared_ptr<Field> field, std::shared_ptr<Player> obj, Vec2D pos = -one)
+            : BaseController(field, obj, pos) {}
 
+    PlayerController(std::shared_ptr<Field> field, std::shared_ptr<Entity> obj, Vec2D pos = -one)
+            : BaseController(field, obj, pos) {}
 };
 
 

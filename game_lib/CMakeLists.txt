@@ -7,6 +7,7 @@ include_directories(core entities field viewers viewers/console field/cells cont
 set(LIB_SRC
         core/Vec2D.h core/Vec2D.cpp
         core/Cloneable.h
+        core/Stringable.h
 
         entities/entities_declarations.h
         entities/Entity.h
@@ -26,11 +27,12 @@ set(LIB_SRC
         viewers/console/CellView.h viewers/console/CellView.cpp
 
         controllers/BaseController.h controllers/EnemyController.h controllers/PlayerController.h
+        controllers/Bot.h controllers/BotLogic.h
 
         logging/LogLevel.cpp logging/LogLevel.h
         logging/Log.h logging/loggers/Logger.h logging/loggers/ConsoleLogger.h logging/loggers/FileLogger.h
         logging/Loggable.h logging/LogTimer.h logging/LogTimer.cpp
-        logging/formats/Format.h logging/formats/TagFormat.h logging/formats/TimeFormat.h logging/formats/EmptyFormat.h)
+        logging/formats/Format.h logging/formats/TagFormat.h logging/formats/TimeFormat.h logging/formats/EmptyFormat.h controllers/BotLogic.h)
 
 add_library(game_lib STATIC ${LIB_SRC})
 
