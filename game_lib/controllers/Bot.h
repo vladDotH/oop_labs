@@ -5,7 +5,7 @@
 #include "PlayerController.h"
 #include "logic/BotLogic.h"
 
-template<class BL, typename std::enable_if<std::is_base_of<BotLogic, T>::value, void *>::type * = nullptr>
+template<class BL, typename std::enable_if<std::is_base_of<BotLogic, BL>::value, void *>::type * = nullptr>
 class Bot : public Loggable {
 protected:
     std::shared_ptr<Field> field;
@@ -19,15 +19,22 @@ public:
 
 
     void spin() {
-        Vec2D p = logic(field, pc, ec);
+        Vec2D p = logic->solve(field, pc, ec);
         if (p != null) {
             if (p + ec->getPos() >= null && p + ec->getPos() < field->getSize()) {
+                notify(info("bot has tried to move from: " + ec->getPos().toString() + " to: " +
+                            (ec->getPos() + p).toString()));
                 ec->move(p);
-                notify(info("bot has moved on: " + ec->getPos().toString()));
-            }
-            else notify(warn("bot has tried to move outside the field"));
-        }
-        else notify(info("bot has not moved"));
+            } else notify(warn("bot has tried to move outside the field"));
+        } else notify(info("bot has not moved"));
+    }
+
+    bool addLogger(std::shared_ptr<Logger> logger) override {
+        return Loggable::addLogger(logger) && ec->addLogger(logger);
+    }
+
+    bool removeLogger(std::shared_ptr<Logger> logger) override {
+        return Loggable::removeLogger(logger) && ec->removeLogger(logger);
     }
 };
 

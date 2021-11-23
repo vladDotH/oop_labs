@@ -11,7 +11,7 @@ template<class T, typename std::enable_if<std::is_base_of<Entity, T>::value, voi
 class BaseController : public Loggable {
 protected:
     Vec2D pos = -one;
-    std::weak_ptr<Field> field;
+    std::shared_ptr<Field> field;
     std::weak_ptr<T> obj;
 
 public:
@@ -25,9 +25,9 @@ public:
 
     bool put(Vec2D v) {
         if (pos == -one) {
-            if (v >= null && v < field.lock()->getSize()) {
-                if (field.lock()->get(pos).getEntity().expired()) {
-                    if (field.lock()->get(pos).putEntity(obj.lock())) {
+            if (v >= null && v < field->getSize()) {
+                if (!field->get(v).getEntity()) {
+                    if (field->get(v).putEntity(obj.lock())) {
                         pos = v;
                         notify(info("entity has been put on: " + pos.toString()));
                         return true;
@@ -40,12 +40,15 @@ public:
 
     virtual bool move(Vec2D v) {
         if (!expired()) {
-            if (pos + v >= null && pos + v < field.lock()->getSize()) {
-                if (field.lock()->get(pos).moveTo(field.lock()->get(pos + v))) {
-                    notify(info("entity has been moved from: " + pos.toString() + " to:" + (pos + v).toString()));
+            if (pos + v >= null && pos + v < field->getSize()) {
+                if (field->get(pos).moveTo(field->get(pos + v))) {
+                    Log log = info("entity has been moved from: " + pos.toString());
                     pos += v;
+                    if (field->get(pos).getEntity() == obj.lock())
+                        log.msg += " to: " + pos.toString();
+                    notify(log);
                     return true;
-                } else notify(info("entity has not been move from: " + pos.toString() + " to:" + (pos + v).toString()));
+                } else notify(info("entity has not been move from: " + pos.toString() + " to: " + (pos + v).toString()));
             } else notify(warn("try to move to outside of field"));
         } else notify(warn("try to move the deleted entity"));
 

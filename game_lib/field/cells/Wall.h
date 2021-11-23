@@ -5,7 +5,7 @@
 
 class Wall : public AbstractCell {
 public:
-    bool putEntity(std::weak_ptr<Entity> entity) override {
+    bool putEntity(std::shared_ptr<Entity> entity) override {
         return false;
     }
 

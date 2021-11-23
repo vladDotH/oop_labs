@@ -5,8 +5,8 @@ void ConsoleFieldView::show(std::ostream &os) {
         if (field.lock()->cells != nullptr) {
             for (int i = 0; i < field.lock()->size.y; ++i) {
                 for (int j = 0; j < field.lock()->size.x; ++j) {
-                    if (!field.lock()->get(Vec2D(j, i)).getEntity().expired())
-                        std::cout << EntityView::getChar(*field.lock()->get(Vec2D(j, i)).getEntity().lock()) << " ";
+                    if (field.lock()->get(Vec2D(j, i)).getEntity())
+                        std::cout << EntityView::getChar(*field.lock()->get(Vec2D(j, i)).getEntity()) << " ";
                     else
                         std::cout << CellView::getChar(field.lock()->get(Vec2D(j, i))) << " ";
                 }

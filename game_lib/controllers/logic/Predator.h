@@ -10,9 +10,10 @@ protected:
 public:
     Predator(int range = 0) : range(range) {}
 
-    Vec2D operator()(std::shared_ptr<Field> f, std::shared_ptr<PlayerController> pc,
+    Vec2D solve(std::shared_ptr<Field> f,
+                     std::shared_ptr<PlayerController> pc,
                      std::shared_ptr<EnemyController> ec) override {
-        Vec2D dv = pc.getPos() - ec.getPos();
+        Vec2D dv = pc->getPos() - ec->getPos();
         if ((int) dv.norm() <= range) {
             return dv.getDir();
         }

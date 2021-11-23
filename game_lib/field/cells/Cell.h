@@ -5,14 +5,14 @@
 
 class Cell : public AbstractCell {
 public:
-    virtual bool putEntity(std::weak_ptr<Entity> entity) override {
-        if (!this->entity.expired()) {
-            if (!entity.lock()->interact(this->entity.lock())) {
+    virtual bool putEntity(std::shared_ptr<Entity> entity) override {
+        if (this->entity) {
+            if (!entity->interact(this->entity)) {
                 notify(debug("coming object has been destroyed"));
                 return true;
             }
 
-            if (!this->entity.lock()->interact(entity.lock())) {
+            if (!this->entity->interact(entity)) {
                 this->entity = entity;
                 notify(debug("object on cell has been destroyed"));
                 return true;
@@ -20,7 +20,7 @@ public:
 
             return false;
         } else {
-            notify(debug("object has been put on empty cell"));
+            notify(debug("object has been moved on empty cell"));
             this->entity = entity;
             return true;
         }

@@ -8,24 +8,27 @@
 
 class AbstractCell : public Cloneable<std::unique_ptr<AbstractCell>>, public Loggable {
 protected:
-    std::weak_ptr<Entity> entity;
+    std::shared_ptr<Entity> entity;
 
 public:
-    std::weak_ptr<Entity> getEntity() {
+    std::shared_ptr<Entity> getEntity() {
         return entity;
     }
 
     bool moveTo(AbstractCell &cell) {
-        if (this != &cell && !entity.expired() && cell.putEntity(entity.lock())) {
-            entity.reset();
-            notify(debug("object has been moved from cell"));
-            return true;
-        }
-        notify(debug("object has not been moved from cell"));
+        if (this != &cell) {
+            if (entity) {
+                if (cell.putEntity(entity)) {
+                    entity.reset();
+                    notify(debug("object has been moved from cell"));
+                    return true;
+                } else notify(debug("object has not been moved from cell"));
+            } else notify(warn("try to move empty entity"));
+        } else notify(warn("try to move on same cell"));
         return false;
     }
 
-    virtual bool putEntity(std::weak_ptr<Entity> entity) = 0;
+    virtual bool putEntity(std::shared_ptr<Entity> entity) = 0;
 
     virtual ~AbstractCell() = default;
 };
