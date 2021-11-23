@@ -3,19 +3,32 @@
 
 #include "EnemyController.h"
 #include "PlayerController.h"
+#include "logic/BotLogic.h"
 
-class Bot : protected EnemyController {
+template<class BL, typename std::enable_if<std::is_base_of<BotLogic, T>::value, void *>::type * = nullptr>
+class Bot : public Loggable {
 protected:
-    std::shared_ptr<PlayerController> player;
+    std::shared_ptr<Field> field;
+    std::shared_ptr<PlayerController> pc;
+    std::shared_ptr<EnemyController> ec;
+    std::shared_ptr<BL> logic;
 public:
-    Bot(std::shared_ptr<Field> field, std::shared_ptr<Enemy> obj, Vec2D pos = -one) : EnemyController(
-            field, obj, pos) {}
+    Bot(std::shared_ptr<Field> field, std::shared_ptr<PlayerController> pc,
+        std::shared_ptr<EnemyController> ec, std::shared_ptr<BL> logic)
+            : field(field), pc(pc), ec(ec), logic(logic) {}
 
-    Bot(std::shared_ptr<Field> field, std::shared_ptr<Entity> obj, Vec2D pos = -one) : EnemyController(
-            field, obj, pos) {
+
+    void spin() {
+        Vec2D p = logic(field, pc, ec);
+        if (p != null) {
+            if (p + ec->getPos() >= null && p + ec->getPos() < field->getSize()) {
+                ec->move(p);
+                notify(info("bot has moved on: " + ec->getPos().toString()));
+            }
+            else notify(warn("bot has tried to move outside the field"));
+        }
+        else notify(info("bot has not moved"));
     }
-
-
 };
 
 

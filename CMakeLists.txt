@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(lab3_all)
+project(lab4_all)
 
 add_subdirectory(game_lib)
 add_subdirectory(tests)

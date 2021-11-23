@@ -2,6 +2,7 @@
 #define POINT_H
 
 #include <iostream>
+#include <cmath>
 #include "Stringable.h"
 
 struct Vec2D : public Stringable {
@@ -38,6 +39,12 @@ struct Vec2D : public Stringable {
     friend Vec2D operator*(Vec2D v, int c);
 
     friend Vec2D operator*(int c, Vec2D v);
+
+    float norm();
+
+    Vec2D getDir();
+
+    Vec2D sgn();
 
     friend std::ostream &operator<<(std::ostream &os, const Vec2D &v);
 

@@ -23,7 +23,7 @@ public:
     BaseController(std::shared_ptr<Field> field, std::shared_ptr<Entity> obj, Vec2D pos = -one) :
             BaseController(field, std::dynamic_pointer_cast<T>(obj), pos) {}
 
-    virtual bool put(Vec2D v) {
+    bool put(Vec2D v) {
         if (pos == -one) {
             if (v >= null && v < field.lock()->getSize()) {
                 if (field.lock()->get(pos).getEntity().expired()) {
@@ -52,12 +52,16 @@ public:
         return false;
     }
 
-    virtual bool moveAbs(Vec2D v) {
+    bool moveAbs(Vec2D v) {
         return move(v - pos);
     }
 
     bool expired() {
         return obj.expired();
+    }
+
+    Vec2D getPos() const {
+        return pos;
     }
 
     virtual ~BaseController() = default;

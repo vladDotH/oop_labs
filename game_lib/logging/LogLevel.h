@@ -2,8 +2,9 @@
 #define LOGLEVEL_H
 
 #include <map>
+#include "../core/Stringable.h"
 
-struct LogLevel {
+struct LogLevel : Stringable {
     enum _LogLevel_ {
         OFF,
         ERROR,
@@ -13,7 +14,7 @@ struct LogLevel {
         ALL
     } value;
 
-    std::string toString() {
+    std::string toString() const override {
         return NAMES.at(value);
     }
 

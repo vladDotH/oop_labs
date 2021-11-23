@@ -72,3 +72,23 @@ std::ostream &operator<<(std::ostream &os, const Vec2D &v) {
 std::string Vec2D::toString() const {
     return "x: " + std::to_string(x) + " y: " + std::to_string(y);
 }
+
+float Vec2D::norm() {
+    return std::sqrt((float) (x * x + y * y));
+}
+
+Vec2D Vec2D::getDir() {
+    if (std::abs(x) > std::abs(y))
+        return Vec2D(x, 0).sgn();
+    else if (std::abs(x) < std::abs(y))
+        return Vec2D(0, y).sgn();
+    else
+        return Vec2D(x, y).sgn();
+}
+
+Vec2D Vec2D::sgn() {
+    return Vec2D(
+            (x > 0 ? 1 : (x < 0 ? -1 : 0)),
+            (y > 0 ? 1 : (y < 0 ? -1 : 0))
+            );
+}

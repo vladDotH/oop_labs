@@ -14,7 +14,7 @@ public:
 
 protected:
     void log(Log l) override {
-        std::cout << l.msg << std::endl;
+        os << l.msg << std::endl;
     }
 };
 
