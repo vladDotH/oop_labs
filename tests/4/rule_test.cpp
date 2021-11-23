@@ -22,6 +22,7 @@
 #include "controllers/EnemyController.h"
 #include "bots/Bot.h"
 #include "bots/logic/Predator.h"
+#include "rules/Collector.h"
 
 using namespace std;
 
@@ -41,39 +42,46 @@ int main() {
 
     shared_ptr<Entity> player = make_shared<Player>();
 
-    shared_ptr<EntityFactory> lf = make_shared<LightFactory>(), hp = make_shared<HealerFactory>(100);
-
-    shared_ptr<Entity> e1 = lf->build(),
-            i1 = hp->build();
-
     f->addLogger(modelLogger);
     player->addLogger(modelLogger);
-    e1->addLogger(modelLogger);
+
+    shared_ptr<EntityFactory> hp = make_shared<HealerFactory>(100);
+
+    shared_ptr<Item> i1 = dynamic_pointer_cast<Item>(hp->build()),
+            i2 = dynamic_pointer_cast<Item>(hp->build()),
+            i3 = dynamic_pointer_cast<Item>(hp->build());
+
+    f->get({3, 3}).putEntity(i1);
+    f->get({6, 3}).putEntity(i2);
+    f->get({3, 6}).putEntity(i3);
+    Vec2D exit = {8, 8};
+
+    i1.reset(), i2.reset(), i3.reset();
+
 
     shared_ptr<PlayerController> pc = make_shared<PlayerController>(f, player, Vec2D(1, 1));
-    Bot<Predator> bot(f, pc,
-                      make_shared<EnemyController>(f, e1, Vec2D(5, 5)),
-                      make_shared<Predator>(4));
-    e1.reset();
-
     pc->addLogger(controlLogger);
-    bot.addLogger(controlLogger);
+
+    vector<weak_ptr<Item>> items = {i1, i2, i3};
+    Collector<2> cl(f, pc, exit, items);
 
     cout << fv;
+    cout << cl.end() << endl;
 
-    pc->moveAbs({5, 2});
-
+    pc->moveAbs({3, 3});
     cout << fv;
+    cout << cl.end() << endl;
 
-    bot.spin();
+    pc->moveAbs({6, 3});
     cout << fv;
+    cout << cl.end() << endl;
 
-    bot.spin();
+    pc->moveAbs({3, 6});
     cout << fv;
+    cout << cl.end() << endl;
 
-    bot.spin();
+    pc->moveAbs(exit);
     cout << fv;
+    cout << cl.end() << endl;
 
-    bot.spin();
-    cout << fv;
 }

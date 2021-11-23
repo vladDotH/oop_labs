@@ -31,10 +31,12 @@ public:
     }
 
     float updDmg(float dmg) {
+        notify(debug("damage has been increased by: " + std::to_string(dmg)));
         return this->dmg += dmg;
     }
 
     float updArmor(float armor) {
+        notify(debug("armor has been increased by: " + std::to_string(armor)));
         return this->armor += armor;
     }
 

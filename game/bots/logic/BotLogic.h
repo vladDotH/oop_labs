@@ -2,9 +2,9 @@
 #define BOTLOGIC_H
 
 #include <memory>
-#include "../../field/Field.h"
-#include "../EnemyController.h"
-#include "../PlayerController.h"
+#include "field/Field.h"
+#include "controllers/EnemyController.h"
+#include "controllers/PlayerController.h"
 
 class BotLogic {
 public:

@@ -1,7 +1,7 @@
 #ifndef PREDATOR_H
 #define PREDATOR_H
 
-#include "../../core/Vec2D.h"
+#include "core/Vec2D.h"
 #include "BotLogic.h"
 
 class Predator : public BotLogic {

@@ -1,8 +1,8 @@
 #ifndef BOT_H
 #define BOT_H
 
-#include "EnemyController.h"
-#include "PlayerController.h"
+#include "controllers/EnemyController.h"
+#include "controllers/PlayerController.h"
 #include "logic/BotLogic.h"
 
 template<class BL, typename std::enable_if<std::is_base_of<BotLogic, BL>::value, void *>::type * = nullptr>
