@@ -6,7 +6,7 @@
 #include "entities/EntityFactory.h"
 #include "field/Field.h"
 
-template<int n, class F /*, typename std::enable_if<std::is_base_of<EntityFactory, F>::value, void *>::type * = nullptr*/>
+template<int n, class F, typename std::enable_if<std::is_base_of<EntityFactory, F>::value, void *>::type * = nullptr>
 class Generator {
     static const int MAX_ATTEMPT = 65536;
 

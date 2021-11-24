@@ -2,7 +2,7 @@
 #define COLLECTOR_H
 
 #include "ObjectsCounter.h"
-#include "../../../game_lib/entities/items/Item.h"
+#include "entities/items/Item.h"
 
 template<int n>
 class Collector : public ObjectsCounter<Item, n> {

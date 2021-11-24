@@ -56,14 +56,13 @@ int main() {
     f->get({3, 6}).putEntity(i3);
     Vec2D exit = {8, 8};
 
-    i1.reset(), i2.reset(), i3.reset();
-
-
     shared_ptr<PlayerController> pc = make_shared<PlayerController>(f, player, Vec2D(1, 1));
     pc->addLogger(controlLogger);
 
     vector<weak_ptr<Item>> items = {i1, i2, i3};
-    Collector<2> cl(f, pc, exit, items);
+    i1.reset(), i2.reset(), i3.reset();
+
+    Collector<-1> cl(f, pc, exit, items);
 
     cout << fv;
     cout << cl.end() << endl;
@@ -83,5 +82,4 @@ int main() {
     pc->moveAbs(exit);
     cout << fv;
     cout << cl.end() << endl;
-
 }
