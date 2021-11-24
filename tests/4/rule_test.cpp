@@ -62,24 +62,24 @@ int main() {
     vector<weak_ptr<Item>> items = {i1, i2, i3};
     i1.reset(), i2.reset(), i3.reset();
 
-    Collector<-1> cl(f, pc, exit, items);
+//    Collector<-1> cl(f, pc, exit, items);
 
     cout << fv;
-    cout << cl.end() << endl;
+//    cout << cl.end() << endl;
 
     pc->moveAbs({3, 3});
     cout << fv;
-    cout << cl.end() << endl;
+//    cout << cl.end() << endl;
 
     pc->moveAbs({6, 3});
     cout << fv;
-    cout << cl.end() << endl;
+//    cout << cl.end() << endl;
 
     pc->moveAbs({3, 6});
     cout << fv;
-    cout << cl.end() << endl;
+//    cout << cl.end() << endl;
 
     pc->moveAbs(exit);
     cout << fv;
-    cout << cl.end() << endl;
+//    cout << cl.end() << endl;
 }

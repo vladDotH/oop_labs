@@ -7,8 +7,10 @@
 template<int n>
 class Collector : public ObjectsCounter<Item, n> {
 public:
-    Collector(std::shared_ptr<Field> field, std::shared_ptr<PlayerController> pc, Vec2D exit,
-              std::vector<std::weak_ptr<Item>> objects) : ObjectsCounter<Item, n>(field, pc, exit, objects) {}
+    void init(std::shared_ptr<Field> field, std::shared_ptr<PlayerController> pc, Vec2D exit,
+              std::vector<std::weak_ptr<Item>> objects) {
+        ObjectsCounter<Item, n>::init(field, pc, exit, objects);
+    }
 };
 
 

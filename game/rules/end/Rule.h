@@ -13,8 +13,13 @@ protected:
     Vec2D exit;
 
 public:
-    Rule(std::shared_ptr<Field> field, std::shared_ptr<PlayerController> pc, Vec2D exit)
-            : field(field), pc(pc), exit(exit) {}
+    constexpr Rule() = default;
+
+    virtual void init(std::shared_ptr<Field> field, std::shared_ptr<PlayerController> pc, Vec2D exit) {
+        this->field = field;
+        this-> pc = pc;
+        this->exit = exit;
+    }
 
     bool end() {
         return condition() && pc->getPos() == exit;

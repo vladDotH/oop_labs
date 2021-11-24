@@ -49,7 +49,7 @@ int main() {
 
     shared_ptr<EnemyFactory> ef = make_shared<LightFactory>();
 
-    Creatures<10> enemies(ef);
+    Generator<10, HealerFactory> enemies(10);
     cout << enemies.generate(f) << endl;
 
     cout << fv;
