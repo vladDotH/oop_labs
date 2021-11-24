@@ -3,7 +3,7 @@
 
 #include <set>
 #include "Rule.h"
-#include "entities/Entity.h"
+#include "../../../game_lib/entities/Entity.h"
 
 template<class T, int n, typename std::enable_if<std::is_base_of<Entity, T>::value, void *>::type * = nullptr>
 class ObjectsCounter : public Rule {

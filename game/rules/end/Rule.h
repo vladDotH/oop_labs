@@ -2,9 +2,9 @@
 #define RULE_H
 
 #include <memory>
-#include "field/Field.h"
-#include "controllers/PlayerController.h"
-#include "../../game_lib/core/Vec2D.h"
+#include "../../../game_lib/field/Field.h"
+#include "../../../game_lib/controllers/PlayerController.h"
+#include "../../../game_lib/core/Vec2D.h"
 
 class Rule {
 protected:

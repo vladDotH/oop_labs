@@ -4,6 +4,8 @@
 #include <iostream>
 #include <cmath>
 #include "Stringable.h"
+#include <random>
+#include <chrono>
 
 struct Vec2D : public Stringable {
     int x = 0, y = 0;
@@ -45,6 +47,10 @@ struct Vec2D : public Stringable {
     Vec2D getDir();
 
     Vec2D sgn();
+
+    static std::mt19937 rng;
+
+    static Vec2D rand(Vec2D bx, Vec2D by);
 
     friend std::ostream &operator<<(std::ostream &os, const Vec2D &v);
 

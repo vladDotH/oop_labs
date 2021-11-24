@@ -85,5 +85,5 @@ int main() {
     f->get({5, 5}).moveTo(f->get({8, 8}));
     cout << fv;
 
-    cout << typeid(*(f->get({8, 8}).getEntity().lock())).name();
+    cout << typeid(*(f->get({8, 8}).getEntity())).name();
 }

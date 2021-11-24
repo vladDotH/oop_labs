@@ -96,5 +96,5 @@ int main() {
     pc.moveAbs({8, 8});
     cout << fv;
 
-    cout << typeid((f->get({8, 8}).getEntity().lock())).name();
+    cout << typeid((f->get({8, 8}).getEntity())).name();
 }

@@ -90,5 +90,13 @@ Vec2D Vec2D::sgn() {
     return Vec2D(
             (x > 0 ? 1 : (x < 0 ? -1 : 0)),
             (y > 0 ? 1 : (y < 0 ? -1 : 0))
-            );
+    );
+}
+
+std::mt19937 Vec2D::rng(std::chrono::duration_cast<std::chrono::seconds>(
+        std::chrono::system_clock::now().time_since_epoch()).count());
+
+Vec2D Vec2D::rand(Vec2D bx, Vec2D by) {
+    std::uniform_int_distribution<std::mt19937::result_type> xdist(bx.x, bx.y), ydist(by.x, by.y);
+    return Vec2D(xdist(Vec2D::rng), ydist(Vec2D::rng));
 }

@@ -23,6 +23,8 @@
 #include "bots/Bot.h"
 #include "bots/logic/Predator.h"
 #include "rules/end/Collector.h"
+#include "rules/init/Creautres.h"
+#include "rules/init/Items.h"
 
 using namespace std;
 
@@ -34,7 +36,7 @@ int main() {
     modelLogger->setFmt(make_shared<TimeFormat>());
 
     shared_ptr<Field> f = FieldBuilder()
-            .setSize({10, 10})
+            .setSize({20, 20})
             .setType(FieldBuilder::Type::BOX)
             .build();
 
@@ -45,43 +47,10 @@ int main() {
     f->addLogger(modelLogger);
     player->addLogger(modelLogger);
 
-    shared_ptr<EntityFactory> hp = make_shared<HealerFactory>(100);
+    shared_ptr<EnemyFactory> ef = make_shared<LightFactory>();
 
-    shared_ptr<Item> i1 = dynamic_pointer_cast<Item>(hp->build()),
-            i2 = dynamic_pointer_cast<Item>(hp->build()),
-            i3 = dynamic_pointer_cast<Item>(hp->build());
-
-    f->get({3, 3}).putEntity(i1);
-    f->get({6, 3}).putEntity(i2);
-    f->get({3, 6}).putEntity(i3);
-    Vec2D exit = {8, 8};
-
-    i1.reset(), i2.reset(), i3.reset();
-
-
-    shared_ptr<PlayerController> pc = make_shared<PlayerController>(f, player, Vec2D(1, 1));
-    pc->addLogger(controlLogger);
-
-    vector<weak_ptr<Item>> items = {i1, i2, i3};
-    Collector<2> cl(f, pc, exit, items);
+    Creatures<10> enemies(ef);
+    cout << enemies.generate(f) << endl;
 
     cout << fv;
-    cout << cl.end() << endl;
-
-    pc->moveAbs({3, 3});
-    cout << fv;
-    cout << cl.end() << endl;
-
-    pc->moveAbs({6, 3});
-    cout << fv;
-    cout << cl.end() << endl;
-
-    pc->moveAbs({3, 6});
-    cout << fv;
-    cout << cl.end() << endl;
-
-    pc->moveAbs(exit);
-    cout << fv;
-    cout << cl.end() << endl;
-
 }

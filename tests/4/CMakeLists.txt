@@ -7,16 +7,20 @@ include_directories(../../game)
 
 set(SRC_BOT_TEST bot_test.cpp)
 set(SRC_RULE_TEST rule_test.cpp)
+set(SRC_GEN_TEST gen_test.cpp)
 
 add_executable(bot_test ${SRC_BOT_TEST})
 add_executable(rule_test ${SRC_RULE_TEST})
+add_executable(gen_test ${SRC_GEN_TEST})
 
 target_link_libraries(bot_test game_lib)
 target_link_libraries(rule_test game_lib)
+target_link_libraries(gen_test game_lib)
 
 target_link_libraries(bot_test game)
 target_link_libraries(rule_test game)
+target_link_libraries(gen_test game)
 
-message("Tests 3 built")
+message("Tests 4 built")
 
 
