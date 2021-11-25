@@ -11,7 +11,7 @@
 
 template<class ItemsRule, class EnemiesRule, class BotsLogic>
 class Game : public Loggable {
-public:
+protected:
     ItemsRule rule1;
     EnemiesRule rule2;
     std::shared_ptr<Field> fld;
@@ -91,6 +91,10 @@ public:
 
     void movePlayerAbs(Vec2D p) {
         pc->moveAbs(p);
+    }
+
+    std::shared_ptr<Field> getFld() const {
+        return fld;
     }
 };
 

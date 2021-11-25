@@ -20,12 +20,11 @@ int main() {
             Generator<3, WeaponFactory>(5)
     );
 
-    ConsoleFieldView fv(g.fld);
+    ConsoleFieldView fv(g.getFld());
     cout << fv;
 
-    cout << g.entrance << ' ' << g.exit << endl;
-    cout << g.enemies.size() << endl << g.items.size() << endl;
-
+    g.spin();
+    cout << fv;
     g.spin();
     cout << fv;
 };
