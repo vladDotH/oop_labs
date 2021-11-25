@@ -9,18 +9,23 @@
 #include "bots/Bot.h"
 #include "bots/logic/Predator.h"
 
-template<class ItemsRule, class EnemiesRule, class BotsLogic>
+template<class ItemsRule,
+        class EnemiesRule,
+        class BL,
+        typename std::enable_if<std::is_base_of<Rule, ItemsRule>::value, void *>::type * = nullptr,
+        typename std::enable_if<std::is_base_of<Rule, EnemiesRule>::value, void *>::type * = nullptr,
+        typename std::enable_if<std::is_base_of<BotLogic, BL>::value, void *>::type * = nullptr>
 class Game : public Loggable {
 protected:
     ItemsRule rule1;
     EnemiesRule rule2;
     std::shared_ptr<Field> fld;
-    std::shared_ptr<BotsLogic> bl;
+    std::shared_ptr<BL> bl;
     std::shared_ptr<PlayerController> pc;
     Vec2D entrance, exit;
     std::vector<std::weak_ptr<Item>> items;
     std::vector<std::weak_ptr<Enemy>> enemies;
-    std::vector<std::shared_ptr<Bot<BotsLogic>>> bots;
+    std::vector<std::shared_ptr<Bot<BL>>> bots;
 
 private:
     template<class G, class ... Generators>
@@ -50,7 +55,7 @@ private:
                     if (typeid(*fld->get(p).getEntity()).hash_code() == typeid(Enemy).hash_code()) {
                         enemies.push_back(std::dynamic_pointer_cast<Enemy>(fld->get(p).getEntity()));
                         bots.push_back(
-                                std::make_shared<Bot<BotsLogic>>(
+                                std::make_shared<Bot<BL>>(
                                         fld, pc,
                                         std::make_shared<EnemyController>(fld, fld->get(p).getEntity(), p, false),
                                         bl
@@ -66,7 +71,7 @@ private:
 
 public:
     template<class ... Generators>
-    Game(std::shared_ptr<Field> f, std::shared_ptr<BotsLogic> bl, Generators ... gens) : fld(f), bl(bl) {
+    Game(std::shared_ptr<Field> f, std::shared_ptr<BL> bl, Generators ... gens) : fld(f), bl(bl) {
         field_analysis();
         std::shared_ptr<Player> plr = std::make_shared<Player>();
         pc = std::make_shared<PlayerController>(fld, plr, entrance);
