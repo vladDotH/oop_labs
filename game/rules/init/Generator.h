@@ -6,7 +6,7 @@
 #include "entities/EntityFactory.h"
 #include "field/Field.h"
 
-template<int n, class FCT>
+template<int n, class FCT, typename std::enable_if<std::is_base_of<EntityFactory, FCT>::value, void *>::type * = nullptr>
 class Generator {
     static const int MAX_ATTEMPT = 65536;
     FCT fct;

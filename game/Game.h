@@ -22,19 +22,7 @@ protected:
     std::vector<std::weak_ptr<Enemy>> enemies;
     std::vector<std::shared_ptr<Bot<BotsLogic>>> bots;
 
-public:
-    template<class ... Generators>
-    Game(std::shared_ptr<Field> f, std::shared_ptr<BotsLogic> bl, Generators ... gens) : fld(f), bl(bl) {
-        field_analysis();
-        std::shared_ptr<Player> plr = std::make_shared<Player>();
-        pc = std::make_shared<PlayerController>(fld, plr, entrance);
-        if constexpr (sizeof...(gens))
-            generators_unpack(gens...);
-        rule1.init(f, pc, exit, items);
-        rule2.init(f, pc, exit, enemies);
-        entities_analysis();
-    }
-
+private:
     template<class G, class ... Generators>
     void generators_unpack(G gen, Generators ... gens) {
         gen.generate(fld);
@@ -74,6 +62,19 @@ public:
                 }
             }
         }
+    }
+
+public:
+    template<class ... Generators>
+    Game(std::shared_ptr<Field> f, std::shared_ptr<BotsLogic> bl, Generators ... gens) : fld(f), bl(bl) {
+        field_analysis();
+        std::shared_ptr<Player> plr = std::make_shared<Player>();
+        pc = std::make_shared<PlayerController>(fld, plr, entrance);
+        if constexpr (sizeof...(gens))
+            generators_unpack(gens...);
+        rule1.init(f, pc, exit, items);
+        rule2.init(f, pc, exit, enemies);
+        entities_analysis();
     }
 
     bool end() {
