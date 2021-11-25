@@ -15,13 +15,16 @@ protected:
     std::weak_ptr<T> obj;
 
 public:
-    BaseController(std::shared_ptr<Field> field, std::shared_ptr<T> obj, Vec2D pos = -one) : field(field), obj(obj) {
-        if (pos != -one)
-            put(pos);
+    BaseController(std::shared_ptr<Field> field, std::shared_ptr<T> obj, Vec2D pos = -one, bool put = true)
+            : field(field), obj(obj) {
+        if (put) {
+            if (pos != -one)
+                this->put(pos);
+        } else this->pos = pos;
     }
 
-    BaseController(std::shared_ptr<Field> field, std::shared_ptr<Entity> obj, Vec2D pos = -one) :
-            BaseController(field, std::dynamic_pointer_cast<T>(obj), pos) {}
+    BaseController(std::shared_ptr<Field> field, std::shared_ptr<Entity> obj, Vec2D pos = -one, bool put = true) :
+            BaseController(field, std::dynamic_pointer_cast<T>(obj), pos, put) {}
 
     bool put(Vec2D v) {
         if (pos == -one) {
@@ -48,7 +51,8 @@ public:
                         log.msg += " to: " + pos.toString();
                     notify(log);
                     return true;
-                } else notify(info("entity has not been move from: " + pos.toString() + " to: " + (pos + v).toString()));
+                } else
+                    notify(info("entity has not been move from: " + pos.toString() + " to: " + (pos + v).toString()));
             } else notify(warn("try to move to outside of field"));
         } else notify(warn("try to move the deleted entity"));
 

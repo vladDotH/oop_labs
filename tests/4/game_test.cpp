@@ -11,14 +11,21 @@
 using namespace std;
 
 int main() {
-    Game<Collector<0>, Exterminator<-1>> g(
+    Game<Collector<0>, Exterminator<-1>, Predator> g(
             FieldBuilder().setSize({20, 20}).setType(FieldBuilder::Type::BOX).build(),
-            Generator<10, LightFactory>(), Generator<5, HealerFactory>(2)
+            make_shared<Predator>(5),
+            Generator<10, LightFactory>(),
+            Generator<5, HealerFactory>(20),
+            Generator<5, HeavyFactory>(),
+            Generator<3, WeaponFactory>(5)
     );
 
-    ConsoleFieldView fv(g.f);
+    ConsoleFieldView fv(g.fld);
     cout << fv;
 
-    cout << g.entrance << ' ' << g.exit;
-    cout << g.enemies.size();
+    cout << g.entrance << ' ' << g.exit << endl;
+    cout << g.enemies.size() << endl << g.items.size() << endl;
+
+    g.spin();
+    cout << fv;
 };

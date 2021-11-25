@@ -36,6 +36,10 @@ public:
     bool removeLogger(std::shared_ptr<Logger> logger) override {
         return Loggable::removeLogger(logger) && ec->removeLogger(logger);
     }
+
+    std::shared_ptr<EnemyController> getController() {
+        return ec;
+    }
 };
 
 
