@@ -12,6 +12,7 @@ protected:
     std::shared_ptr<PlayerController> pc;
     std::shared_ptr<EnemyController> ec;
     std::shared_ptr<BL> logic;
+
 public:
     Bot(std::shared_ptr<Field> field, std::shared_ptr<PlayerController> pc,
         std::shared_ptr<EnemyController> ec, std::shared_ptr<BL> logic)

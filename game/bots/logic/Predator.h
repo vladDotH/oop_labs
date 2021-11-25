@@ -7,6 +7,7 @@
 class Predator : public BotLogic {
 protected:
     int range;
+
 public:
     Predator(int range = 0) : range(range) {}
 

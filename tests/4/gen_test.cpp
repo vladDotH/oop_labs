@@ -23,8 +23,7 @@
 #include "bots/Bot.h"
 #include "bots/logic/Predator.h"
 #include "rules/end/Collector.h"
-#include "rules/init/Creautres.h"
-#include "rules/init/Items.h"
+#include "rules/init/Generator.h"
 
 using namespace std;
 
