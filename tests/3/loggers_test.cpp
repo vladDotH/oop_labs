@@ -27,11 +27,11 @@ int main() {
     shared_ptr<Logger> l = make_shared<ConsoleLogger>();
     l->setFmt(make_shared<TimeFormat>());
     l->setLvl(LogLevel::ALL);
-    *l << Log(LogLevel::WARN, "log warn");
-    *l << Log(LogLevel::DEBUG, "log debug");
-    *l << error("log error");
+    *l << Log(LogLevel::WARN, "log logWarn");
+    *l << Log(LogLevel::DEBUG, "log logDebug");
+    *l << logErr("log logErr");
     LogLevel lv = LogLevel::INFO;
     cout << lv.toString() << endl;
 
-    *l << info("program end");
+    *l << logInfo("program end");
 }

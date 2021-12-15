@@ -16,10 +16,10 @@ struct Log {
     }
 };
 
-#define error(msg) Log(LogLevel::ERROR, msg)
-#define warn(msg) Log(LogLevel::WARN, msg)
-#define info(msg) Log(LogLevel::INFO, msg)
-#define debug(msg) Log(LogLevel::DEBUG, msg)
+#define logErr(msg) Log(LogLevel::ERROR, msg)
+#define logWarn(msg) Log(LogLevel::WARN, msg)
+#define logInfo(msg) Log(LogLevel::INFO, msg)
+#define logDebug(msg) Log(LogLevel::DEBUG, msg)
 
 
 #endif //LOG_H

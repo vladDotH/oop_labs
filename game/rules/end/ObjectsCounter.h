@@ -5,14 +5,17 @@
 #include "Rule.h"
 #include "entities/Entity.h"
 
-template<class T, int n, typename std::enable_if<std::is_base_of<Entity, T>::value, void *>::type * = nullptr>
 class ObjectsCounter : public Rule {
 protected:
-    std::vector<std::weak_ptr<T>> objects;
+    std::vector<std::weak_ptr<Entity>> objects;
+    int n;
 
 public:
+    ObjectsCounter(int n) : n(n) {}
+
     void init(std::shared_ptr<Field> field, std::shared_ptr<PlayerController> pc,
-              Vec2D exit, std::vector<std::weak_ptr<T>> objects) {
+              Vec2D exit, std::vector<std::weak_ptr<Entity>> objects) {
+        this->n = n;
         Rule::init(field, pc, exit);
         if (n >= 0 && objects.size() < n)
             throw std::invalid_argument("unreachable condition");
@@ -26,7 +29,6 @@ public:
         }
         return n < 0 ? c == objects.size() : c >= n;
     }
-
 };
 
 

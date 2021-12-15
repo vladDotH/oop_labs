@@ -13,7 +13,7 @@ void FieldBuilder::default_generation(Field &f) {
 
 void FieldBuilder::box_generation(Field &f) {
     if (!(size >= one * 4)) {
-        notify(error("too small size for box generation"));
+        notify(logErr("too small size for box generation"));
         throw std::invalid_argument("too small size");
     }
 
@@ -41,7 +41,7 @@ std::shared_ptr<Field> FieldBuilder::build() {
             box_generation(*f);
             break;
     }
-    notify(debug("field has been built"));
+    notify(logDebug("field has been built"));
     return f;
 }
 

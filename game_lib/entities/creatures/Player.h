@@ -5,7 +5,13 @@
 
 class Player : public Creature {
 public:
-    Player() : Creature(200, 10, 10) {}
+    constexpr static const float HP = 100, DMG = 7, ARM = 1;
+
+    Player() : Creature(HP, DMG, ARM) {}
+
+    std::shared_ptr<Entity> clone() override {
+        return std::shared_ptr<Player>();
+    }
 };
 
 

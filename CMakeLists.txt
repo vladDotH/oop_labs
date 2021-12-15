@@ -4,5 +4,6 @@ project(lab4_all)
 add_subdirectory(game_lib)
 add_subdirectory(game)
 add_subdirectory(tests)
+add_subdirectory(gui)
 
 message("Project built")

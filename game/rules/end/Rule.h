@@ -13,7 +13,7 @@ protected:
     Vec2D exit;
 
 public:
-    constexpr Rule() = default;
+    Rule() = default;
 
     virtual void init(std::shared_ptr<Field> field, std::shared_ptr<PlayerController> pc, Vec2D exit) {
         this->field = field;

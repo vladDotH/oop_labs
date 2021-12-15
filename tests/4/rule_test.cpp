@@ -22,7 +22,7 @@
 #include "controllers/EnemyController.h"
 #include "bots/Bot.h"
 #include "bots/logic/Predator.h"
-#include "rules/end/Collector.h"
+#include "rules/end/ObjectsCounter.h"
 
 using namespace std;
 
@@ -59,10 +59,10 @@ int main() {
     shared_ptr<PlayerController> pc = make_shared<PlayerController>(f, player, Vec2D(1, 1));
     pc->addLogger(controlLogger);
 
-    vector<weak_ptr<Item>> items = {i1, i2, i3};
+    vector<weak_ptr<Entity>> items = {i1, i2, i3};
     i1.reset(), i2.reset(), i3.reset();
 
-    Collector<-1> cl;
+    ObjectsCounter cl(10);
     cl.init(f, pc, exit, items);
 
     cout << fv;

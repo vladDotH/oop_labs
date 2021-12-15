@@ -4,8 +4,14 @@
 #include "Entity.h"
 
 class EntityFactory {
+protected:
+    std::shared_ptr<Entity> e;
 public:
-    virtual std::shared_ptr<Entity> build() = 0;
+    EntityFactory(std::shared_ptr<Entity> e) : e(e) {}
+
+    virtual std::shared_ptr<Entity> build() {
+        return e ? e->clone() : nullptr;
+    }
 };
 
 

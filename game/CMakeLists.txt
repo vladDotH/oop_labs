@@ -7,7 +7,6 @@ include_directories(../game_lib bots rules)
 set(LIB_SRC
         bots/Bot.h bots/logic/BotLogic.h bots/logic/Predator.h
         rules/end/Rule.h rules/end/ObjectsCounter.h
-        rules/end/Exterminator.h rules/end/Collector.h
         rules/init/Generator.h
         Game.cpp Game.h)
 

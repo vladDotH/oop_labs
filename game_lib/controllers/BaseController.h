@@ -32,11 +32,11 @@ public:
                 if (!field->get(v).getEntity()) {
                     if (field->get(v).putEntity(obj.lock())) {
                         pos = v;
-                        notify(info("entity has been put on: " + pos.toString()));
+                        notify(logInfo("entity has been put on: " + pos.toString()));
                         return true;
-                    } else notify(info("entity has not been put on: " + pos.toString()));
-                } else notify(warn("try to put on claimed cell"));
-            } else notify(warn("try to put no outside of field"));
+                    } else notify(logInfo("entity has not been put on: " + pos.toString()));
+                } else notify(logWarn("try to put on claimed cell"));
+            } else notify(logWarn("try to put no outside of field"));
         }
         return false;
     }
@@ -45,16 +45,16 @@ public:
         if (!expired()) {
             if (pos + v >= null && pos + v < field->getSize()) {
                 if (field->get(pos).moveTo(field->get(pos + v))) {
-                    Log log = info("entity has been moved from: " + pos.toString());
+                    Log log = logInfo("entity has been moved from: " + pos.toString());
                     pos += v;
                     if (field->get(pos).getEntity() == obj.lock())
                         log.msg += " to: " + pos.toString();
                     notify(log);
                     return true;
                 } else
-                    notify(info("entity has not been move from: " + pos.toString() + " to: " + (pos + v).toString()));
-            } else notify(warn("try to move to outside of field"));
-        } else notify(warn("try to move the deleted entity"));
+                    notify(logInfo("entity has not been move from: " + pos.toString() + " to: " + (pos + v).toString()));
+            } else notify(logWarn("try to move to outside of field"));
+        } else notify(logWarn("try to move the deleted entity"));
 
         return false;
     }
@@ -69,6 +69,10 @@ public:
 
     Vec2D getPos() const {
         return pos;
+    }
+
+    std::weak_ptr<T> getObj() const {
+        return obj;
     }
 
     virtual ~BaseController() = default;

@@ -2,6 +2,7 @@
 #define ITEM_H
 
 #include "../Entity.h"
+#include "../creatures/Creature.h"
 #include <functional>
 
 class Item : public Entity {
@@ -10,12 +11,12 @@ protected:
 
     bool interact(Creature &entity) override {
         action(entity);
-        notify(debug("item interacted with creature"));
+        notify(logDebug("item interacted with creature"));
         return true;
     }
 
     bool interact(Item &entity) override {
-        notify(warn("item interacted with item"));
+        notify(logWarn("item interacted with item"));
         return true;
     }
 
@@ -25,11 +26,47 @@ public:
     bool interact(std::shared_ptr<Entity> entity) override {
         return entity->interact(*this);
     }
+};
+
+class Healer : public Item {
+private:
+    float hp;
+public:
+    Healer(float hp) : hp(hp), Item([=](Creature &c) -> bool {
+        return c.updHp(hp) > 0;
+    }) {}
 
     std::shared_ptr<Entity> clone() override {
-        return std::make_shared<Item>(action);
+        return std::make_shared<Healer>(hp);
     }
 };
 
+class Armor : public Item {
+private:
+    float arm;
+public:
+    Armor(float arm) : arm(arm), Item([=](Creature &c) -> bool {
+        c.updArmor(arm);
+        return true;
+    }) {}
+
+    std::shared_ptr<Entity> clone() override {
+        return std::make_shared<Armor>(arm);
+    }
+};
+
+class Weapon : public Item {
+private:
+    float dmg;
+public:
+    Weapon(float dmg) : dmg(dmg), Item([=](Creature &c) -> bool {
+        c.updDmg(dmg);
+        return true;
+    }) {}
+
+    std::shared_ptr<Entity> clone() override {
+        return std::make_shared<Weapon>(dmg);
+    }
+};
 
 #endif //ITEM_H

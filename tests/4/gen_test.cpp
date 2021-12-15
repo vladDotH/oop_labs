@@ -22,7 +22,6 @@
 #include "controllers/EnemyController.h"
 #include "bots/Bot.h"
 #include "bots/logic/Predator.h"
-#include "rules/end/Collector.h"
 #include "rules/init/Generator.h"
 
 using namespace std;
@@ -48,7 +47,7 @@ int main() {
 
     shared_ptr<EnemyFactory> ef = make_shared<LightFactory>();
 
-    Generator<10, HealerFactory> enemies(10);
+    Generator enemies(make_shared<HealerFactory>(10), 5);
     cout << enemies.generate(f) << endl;
 
     cout << fv;

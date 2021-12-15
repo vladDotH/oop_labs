@@ -5,41 +5,23 @@
 #include <functional>
 
 class ItemFactory : public EntityFactory {
-protected:
-    std::function<bool(Creature &)> action;
-
 public:
-    ItemFactory(const std::function<bool(Creature &)> &action) : action(action) {}
-
-    std::shared_ptr<Entity> build() final override {
-        return std::make_shared<Item>(action);
-    }
+    ItemFactory(std::shared_ptr<Item> e) : EntityFactory(e) {}
 };
 
 class HealerFactory : public ItemFactory {
 public:
-    HealerFactory(float hp) :
-            ItemFactory([=](Creature &c) -> bool {
-                return c.updHp(hp) > 0;
-            }) {}
+    HealerFactory(float hp) : ItemFactory(std::make_shared<Healer>(hp)) {}
 };
 
 class ArmorFactory : public ItemFactory {
 public:
-    ArmorFactory(float armor) :
-            ItemFactory([=](Creature &c) -> bool {
-                c.updArmor(armor);
-                return true;
-            }) {}
+    ArmorFactory(float arm) : ItemFactory(std::make_shared<Armor>(arm)) {}
 };
 
 class WeaponFactory : public ItemFactory {
 public:
-    WeaponFactory(float dmg) :
-            ItemFactory([=](Creature &c) -> bool {
-                c.updDmg(dmg);
-                return true;
-            }) {}
+    WeaponFactory(float dmg) : ItemFactory(std::make_shared<Weapon>(dmg)) {}
 };
 
 

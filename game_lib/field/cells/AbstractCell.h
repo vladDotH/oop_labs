@@ -20,11 +20,11 @@ public:
             if (entity) {
                 if (cell.putEntity(entity)) {
                     entity.reset();
-                    notify(debug("object has been moved from cell"));
+                    notify(logDebug("object has been moved from cell"));
                     return true;
-                } else notify(debug("object has not been moved from cell"));
-            } else notify(warn("try to move empty entity"));
-        } else notify(warn("try to move on same cell"));
+                } else notify(logDebug("object has not been moved from cell"));
+            } else notify(logWarn("try to move empty entity"));
+        } else notify(logWarn("try to move on same cell"));
         return false;
     }
 

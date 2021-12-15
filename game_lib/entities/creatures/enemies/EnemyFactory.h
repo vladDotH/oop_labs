@@ -5,26 +5,22 @@
 
 class EnemyFactory : public CreatureFactory {
 public:
-    EnemyFactory(float hp, float dmg, float armor) : CreatureFactory(hp, dmg, armor) {}
-
-    std::shared_ptr<Entity> build() override {
-        return std::make_shared<Enemy>(hp, dmg, armor);
-    }
+    EnemyFactory(std::shared_ptr<Enemy> e) : CreatureFactory(e) {}
 };
 
 class LightFactory : public EnemyFactory {
 public:
-    LightFactory() : EnemyFactory(20, 5, 0) {}
+    LightFactory() : EnemyFactory(std::make_shared<Light>()) {}
 };
 
 class MediumFactory : public EnemyFactory {
 public:
-    MediumFactory() : EnemyFactory(40, 4, 2) {}
+    MediumFactory() : EnemyFactory(std::make_shared<Medium>()) {}
 };
 
 class HeavyFactory : public EnemyFactory {
 public:
-    HeavyFactory() : EnemyFactory(60, 2, 5) {}
+    HeavyFactory() : EnemyFactory(std::make_shared<Heavy>()) {}
 };
 
 

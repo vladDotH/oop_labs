@@ -31,7 +31,7 @@ set(LIB_SRC
         logging/LogLevel.cpp logging/LogLevel.h
         logging/Log.h logging/loggers/Logger.h logging/loggers/ConsoleLogger.h logging/loggers/FileLogger.h
         logging/Loggable.h logging/LogTimer.h logging/LogTimer.cpp
-        logging/formats/Format.h logging/formats/TagFormat.h logging/formats/TimeFormat.h logging/formats/EmptyFormat.h)
+        logging/formats/Format.h logging/formats/TagFormat.h logging/formats/TimeFormat.h logging/formats/EmptyFormat.h controllers/ItemController.h core/InstanceOf.h)
 
 add_library(game_lib STATIC ${LIB_SRC})
 

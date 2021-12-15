@@ -51,7 +51,7 @@ int main() {
     e1->addLogger(modelLogger);
 
     shared_ptr<PlayerController> pc = make_shared<PlayerController>(f, player, Vec2D(1, 1));
-    Bot<Predator> bot(f, pc,
+    Bot bot(f, pc,
                       make_shared<EnemyController>(f, e1, Vec2D(5, 5)),
                       make_shared<Predator>(4));
     e1.reset();

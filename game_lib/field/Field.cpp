@@ -6,11 +6,11 @@ Vec2D Field::getSize() {
 
 AbstractCell &Field::get(Vec2D p) {
     if (!(p < size && p >= null)) {
-        notify(error("cell index error"));
-        throw std::out_of_range("cell index error");
+        notify(logErr("cell index logErr"));
+        throw std::out_of_range("cell index logErr");
     }
     if (cells[p.y][p.x] == nullptr) {
-        notify(error("field was not built : nullptr error"));
+        notify(logErr("field was not built : nullptr logErr"));
         throw std::bad_alloc();
     }
     return *cells[p.y][p.x];
@@ -22,7 +22,7 @@ AbstractCell &Field::operator[](Vec2D p) {
 
 Field::Field(Vec2D size) : size(size) {
     if (size <= null) {
-        notify(error("bad field size error"));
+        notify(logErr("bad field size logErr"));
         throw std::invalid_argument("bad field size");
     }
     cells = std::make_unique<std::unique_ptr<std::unique_ptr<AbstractCell>[]>[]>(size.y);
@@ -43,7 +43,7 @@ void Field::copy(const Field &f) {
             cells[i][j] = f.cells[i][j]->clone();
         }
     }
-    notify(debug("field has been copied"));
+    notify(logDebug("field has been copied"));
 }
 
 Field::Field(const Field &f) {
@@ -61,7 +61,7 @@ Field &Field::operator=(const Field &f) {
 void Field::move(Field &&f) {
     size = std::exchange(f.size, null);
     cells = std::move(f.cells);
-    notify(debug("field has been moved"));
+    notify(logDebug("field has been moved"));
 }
 
 Field::Field(Field &&f) {
@@ -84,7 +84,7 @@ void Field::clear() {
         cells[i].release();
     }
     cells.release();
-    notify(debug("field has been cleared"));
+    notify(logDebug("field has been cleared"));
 }
 
 Field::~Field() {

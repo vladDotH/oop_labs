@@ -6,24 +6,23 @@
 #include "entities/EntityFactory.h"
 #include "field/Field.h"
 
-template<int n, class FCT, typename std::enable_if<std::is_base_of<EntityFactory, FCT>::value, void *>::type * = nullptr>
 class Generator {
     static const int MAX_ATTEMPT = 65536;
-    FCT fct;
+    std::shared_ptr<EntityFactory> fct;
+    int size;
 
 public:
-    template<typename ... Args>
-    constexpr Generator(Args... args) : fct(args...) {}
+    Generator(std::shared_ptr<EntityFactory> fct, int size) : size(size), fct(fct) {}
 
     int generate(std::shared_ptr<Field> field) {
         int put = 0;
-        for (int i = 0; i < n; ++i) {
+        for (int i = 0; i < size; ++i) {
             int attempt = 0;
             Vec2D p;
             do {
                 p = Vec2D::rand({0, field->getSize().x - 1}, {0, field->getSize().y - 1});
                 attempt++;
-            } while (!(!field->get(p).getEntity() && field->get(p).putEntity(fct.build()))
+            } while (!(!field->get(p).getEntity() && field->get(p).putEntity(fct->build()))
                      && attempt < MAX_ATTEMPT);
             put += (attempt < MAX_ATTEMPT);
         }

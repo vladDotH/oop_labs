@@ -9,12 +9,12 @@ protected:
 
     bool interact(Creature &entity) override {
         float d = -dmg + entity.armor;
-        notify(debug("creature has interacted with creature with resulting dmg:" + std::to_string(d)));
+        notify(logDebug("creature has interacted with creature with resulting dmg:" + std::to_string(d)));
         return entity.updHp(d < 0 ? d : 0) > 0;
     }
 
     bool interact(Item &entity) override {
-        notify(debug("creature has interacted with item"));
+        notify(logDebug("creature has interacted with item"));
         return false;
     }
 
@@ -26,17 +26,17 @@ public:
     }
 
     float updHp(float hp) {
-        notify(debug("hp has been increased by: " + std::to_string(hp)));
+        notify(logDebug("hp has been increased by: " + std::to_string(hp)));
         return this->hp += hp;
     }
 
     float updDmg(float dmg) {
-        notify(debug("damage has been increased by: " + std::to_string(dmg)));
+        notify(logDebug("damage has been increased by: " + std::to_string(dmg)));
         return this->dmg += dmg;
     }
 
     float updArmor(float armor) {
-        notify(debug("armor has been increased by: " + std::to_string(armor)));
+        notify(logDebug("armor has been increased by: " + std::to_string(armor)));
         return this->armor += armor;
     }
 
@@ -50,10 +50,6 @@ public:
 
     float getArmor() const {
         return armor;
-    }
-
-    std::shared_ptr<Entity> clone() override {
-        return std::make_shared<Creature>(hp, dmg, armor);
     }
 };
 

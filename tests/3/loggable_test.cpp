@@ -26,7 +26,7 @@ using namespace std;
 class A : public Loggable {
 public:
     void f() {
-        notify(info("function f called"));
+        notify(logInfo("function f called"));
     }
 };
 

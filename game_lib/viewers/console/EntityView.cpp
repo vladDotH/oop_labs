@@ -2,9 +2,13 @@
 
 EntityView::EntityView() : ConsoleObjectView<Entity>(
         {
-                {typeid(Enemy).hash_code(),  'e'},
                 {typeid(Player).hash_code(), 'p'},
-                {typeid(Item).hash_code(),   'i'}
+                {typeid(Light).hash_code(),  'L'},
+                {typeid(Medium).hash_code(),  'M'},
+                {typeid(Heavy).hash_code(),  'H'},
+                {typeid(Healer).hash_code(),   'h'},
+                {typeid(Weapon).hash_code(),   'w'},
+                {typeid(Armor).hash_code(),   'a'}
         }
 ) {}
 
