@@ -58,8 +58,8 @@ public:
     NAMES names;
     IMAGES images;
     KEYS keys;
-    const int SPRITE_SIZE = 40;
-    const int GAME_FREQ = 700;
+    const int sprite_size = 30;
+    const int game_freq = 700;
 };
 
 #endif //ASSETS_H
