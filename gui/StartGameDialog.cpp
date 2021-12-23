@@ -1,11 +1,8 @@
-//
-// Created by vlad on 23.12.2021.
-//
-
 #include "StartGameDialog.h"
 
 StartGameDialog::StartGameDialog(QWidget *parent, const Qt::WindowFlags &f = Qt::WindowFlags())
         : QDialog(parent, f) {
+    setWindowTitle("генерация");
     lt = new QVBoxLayout(this);
 
     fld = new QGroupBox("параметры игры", this);

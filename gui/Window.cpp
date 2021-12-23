@@ -15,10 +15,11 @@ void Window::print() {
             }
         }
     }
-    statusBar()->showMessage(QString("hp:%1 dmg:%2 armor:%3")
-                                     .arg(game->getPc()->getObj().lock()->getHp())
-                                     .arg(game->getPc()->getObj().lock()->getDmg())
-                                     .arg(game->getPc()->getObj().lock()->getArmor()));
+    if (!game->getPc()->expired())
+        statusBar()->showMessage(QString("hp:%1 dmg:%2 armor:%3")
+                                         .arg(game->getPc()->getObj().lock()->getHp())
+                                         .arg(game->getPc()->getObj().lock()->getDmg())
+                                         .arg(game->getPc()->getObj().lock()->getArmor()));
 }
 
 
@@ -33,12 +34,14 @@ void Window::stop() {
 void Window::spin() {
     gameMx.lock();
     this->game->spin();
-    print();
     if (game->fail()) {
         stop();
         QMessageBox::warning(this, "Информация", "Игра проиграна");
         close();
+        gameMx.unlock();
+        return;
     }
+    print();
     gameMx.unlock();
 }
 
@@ -68,20 +71,22 @@ Window::Window(std::shared_ptr<Game> game) : QMainWindow(nullptr), scene(this), 
 
 void Window::keyPressEvent(QKeyEvent *event) {
     gameMx.lock();
-    if (event->key() == Assets::get().keys.UP) {
-        game->movePlayer(up);
-    } else if (event->key() == Assets::get().keys.LEFT) {
-        game->movePlayer(left);
-    } else if (event->key() == Assets::get().keys.DOWN) {
-        game->movePlayer(down);
-    } else if (event->key() == Assets::get().keys.RIGHT) {
-        game->movePlayer(right);
-    }
-    print();
-    if (game->end()) {
-        updTimer.stop();
-        QMessageBox::information(this, "Информация", "Игра пройдена");
-        close();
+    if (!game->fail()) {
+        if (event->key() == Assets::get().keys.UP) {
+            game->movePlayer(up);
+        } else if (event->key() == Assets::get().keys.LEFT) {
+            game->movePlayer(left);
+        } else if (event->key() == Assets::get().keys.DOWN) {
+            game->movePlayer(down);
+        } else if (event->key() == Assets::get().keys.RIGHT) {
+            game->movePlayer(right);
+        }
+        print();
+        if (game->end()) {
+            updTimer.stop();
+            QMessageBox::information(this, "Информация", "Игра пройдена");
+            close();
+        }
     }
     gameMx.unlock();
 }
@@ -134,8 +139,9 @@ void Window::save() {
 
 void Window::initNewGame(Vec2D v, int collect, int kill, int range, int heals, int armors, int weapons, int lights,
                          int mediums, int heavies) {
+    std::shared_ptr<Game> newGame;
     try {
-        game = std::make_shared<Game>(
+        newGame = std::make_shared<Game>(
                 FieldBuilder().setSize(v).setType(FieldBuilder::Type::DEFAULT).build(),
                 std::make_shared<Predator>(range), std::make_shared<ObjectsCounter>(collect),
                 std::make_shared<ObjectsCounter>(kill),
@@ -149,8 +155,13 @@ void Window::initNewGame(Vec2D v, int collect, int kill, int range, int heals, i
     } catch (std::exception &e) {
         QMessageBox::warning(this, "Ошибка генерации",
                              QString(e.what()), "OK");
+        sgd->reject();
+        if (game != nullptr)
+            start();
         return;
     }
+
+    game = newGame;
     sgd->done(0);
     start();
 }
