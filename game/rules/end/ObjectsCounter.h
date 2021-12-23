@@ -29,6 +29,10 @@ public:
         }
         return n < 0 ? c == objects.size() : c >= n;
     }
+
+    int getN() const {
+        return n;
+    }
 };
 
 

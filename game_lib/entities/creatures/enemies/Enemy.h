@@ -14,6 +14,8 @@ public:
 
     Light() : Enemy(HP, DMG, ARM) {}
 
+    Light(float hp, float dmg, float armor) : Enemy(hp, dmg, armor) {}
+
     std::shared_ptr<Entity> clone() override {
         return std::make_shared<Light>();
     }
@@ -25,6 +27,8 @@ public:
 
     Medium() : Enemy(HP, DMG, ARM) {}
 
+    Medium(float hp, float dmg, float armor) : Enemy(hp, dmg, armor) {}
+
     std::shared_ptr<Entity> clone() override {
         return std::make_shared<Medium>();
     }
@@ -35,6 +39,8 @@ public:
     constexpr static const float HP = 50, DMG = 5, ARM = 4;
 
     Heavy() : Enemy(HP, DMG, ARM) {}
+
+    Heavy(float hp, float dmg, float armor) : Enemy(hp, dmg, armor) {}
 
     std::shared_ptr<Entity> clone() override {
         return std::make_shared<Heavy>();

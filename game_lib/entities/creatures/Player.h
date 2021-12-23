@@ -9,6 +9,8 @@ public:
 
     Player() : Creature(HP, DMG, ARM) {}
 
+    Player(float hp, float dmg, float armor) : Creature(hp, dmg, armor) {}
+
     std::shared_ptr<Entity> clone() override {
         return std::shared_ptr<Player>();
     }

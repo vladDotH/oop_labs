@@ -10,12 +10,15 @@
 #include <core/InstanceOf.h>
 #include "bots/Bot.h"
 #include "bots/logic/Predator.h"
+#include "serialization/Snapshots_declaration.h"
 
 class Game : public Loggable {
+    friend class GameSnapshot;
+
 protected:
     std::shared_ptr<ObjectsCounter> irule, erule;
     std::shared_ptr<Field> fld;
-    std::shared_ptr<BotLogic> bl;
+    std::shared_ptr<BotLogic> logic;
     std::shared_ptr<PlayerController> pc;
     std::vector<std::weak_ptr<Entity>> items;
     std::vector<std::weak_ptr<Entity>> enemies;
@@ -41,16 +44,33 @@ private:
 
 public:
     template<class ... Args>
-    Game(std::shared_ptr<Field> f, std::shared_ptr<BotLogic> bl, std::shared_ptr<ObjectsCounter> irule,
-         std::shared_ptr<ObjectsCounter> erule, Args ... generators) : fld(f), bl(bl), irule(irule), erule(erule) {
+    Game(std::shared_ptr<Field> fld, std::shared_ptr<BotLogic> logic, std::shared_ptr<ObjectsCounter> irule,
+         std::shared_ptr<ObjectsCounter> erule, Args ... generators) : fld(fld), logic(logic), irule(irule),
+                                                                       erule(erule) {
         field_analysis();
-        std::shared_ptr<Player> plr = std::make_shared<Player>();
-        pc = std::make_shared<PlayerController>(fld, plr, entrance);
+        auto pe = std::make_shared<Player>();
+        pc = std::make_shared<PlayerController>(fld, pe, entrance);
         if constexpr (sizeof...(generators) != 0)
             generators_unpack(generators...);
         entities_analysis();
-        irule->init(f, pc, exit, items);
-        erule->init(f, pc, exit, enemies);
+        irule->init(fld, pc, exit, items);
+        erule->init(fld, pc, exit, enemies);
+    }
+
+    Game() {}
+
+    void init(std::shared_ptr<Field> fld, Vec2D plPos, std::shared_ptr<BotLogic> logic,
+              std::shared_ptr<ObjectsCounter> irule, std::shared_ptr<ObjectsCounter> erule) {
+        this->fld = fld;
+        this->logic = logic;
+        this->irule = irule;
+        this->erule = erule;
+        pc = std::make_shared<PlayerController>(fld, std::dynamic_pointer_cast<Player>(fld->get(plPos).getEntity()),
+                                                plPos, false);
+        field_analysis();
+        entities_analysis();
+        irule->init(fld, pc, exit, items);
+        erule->init(fld, pc, exit, enemies);
     }
 
     bool end() {

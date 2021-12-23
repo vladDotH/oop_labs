@@ -29,7 +29,7 @@ void Game::entities_analysis() {
                             std::make_shared<Bot>(
                                     fld, pc,
                                     ctrl,
-                                    bl
+                                    logic
                             )
                     );
                 } else if (instanceof<Item>(fld->get(p).getEntity().get())) {

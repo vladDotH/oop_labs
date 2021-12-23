@@ -11,17 +11,17 @@ public:
 
 class HealerFactory : public ItemFactory {
 public:
-    HealerFactory(float hp) : ItemFactory(std::make_shared<Healer>(hp)) {}
+    HealerFactory(float hp = 50) : ItemFactory(std::make_shared<Healer>(hp)) {}
 };
 
 class ArmorFactory : public ItemFactory {
 public:
-    ArmorFactory(float arm) : ItemFactory(std::make_shared<Armor>(arm)) {}
+    ArmorFactory(float arm = 3) : ItemFactory(std::make_shared<Armor>(arm)) {}
 };
 
 class WeaponFactory : public ItemFactory {
 public:
-    WeaponFactory(float dmg) : ItemFactory(std::make_shared<Weapon>(dmg)) {}
+    WeaponFactory(float dmg = 4) : ItemFactory(std::make_shared<Weapon>(dmg)) {}
 };
 
 

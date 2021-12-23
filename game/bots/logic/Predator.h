@@ -20,6 +20,10 @@ public:
         }
         return null;
     }
+
+    int getRange() const {
+        return range;
+    }
 };
 
 

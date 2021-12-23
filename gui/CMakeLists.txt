@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.15)
 project(gui)
 
 set(CMAKE_CXX_STANDARD 17)
-SET(CMAKE_CXX_FLAGS "-pthread")
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 #set(CMAKE_PREFIX_PATH "<qt path>")
 
@@ -19,7 +18,7 @@ set(SRC
         assets/Assets.cpp assets/Assets.h
         assets/views/ObjectView.h assets/views/EntityView.h assets/views/CellView.h
         assets/views/CellView.cpp assets/views/EntityView.cpp
-        )
+        StartGameDialog.cpp StartGameDialog.h)
 
 add_executable(gui ${SRC})
 

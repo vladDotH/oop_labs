@@ -8,6 +8,7 @@
 #include "../viewers/viewers_declarations.h"
 #include <memory>
 #include "../logging//Loggable.h"
+#include "../../game/serialization/Snapshots_declaration.h"
 
 class Field : public Loggable {
     friend class FieldView;
@@ -15,6 +16,8 @@ class Field : public Loggable {
     friend class ConsoleFieldView;
 
     friend class FieldBuilder;
+
+    friend class FieldSnapshot;
 
 private:
     Vec2D size;

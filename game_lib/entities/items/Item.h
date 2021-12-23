@@ -7,6 +7,7 @@
 
 class Item : public Entity {
 protected:
+    float val;
     std::function<bool(Creature &)> action;
 
     bool interact(Creature &entity) override {
@@ -21,51 +22,49 @@ protected:
     }
 
 public:
-    Item(std::function<bool(Creature &)> f) : action(f) {}
+    Item(float val, std::function<bool(Creature &)> f) : val(val), action(f) {}
 
     bool interact(std::shared_ptr<Entity> entity) override {
         return entity->interact(*this);
     }
+
+    float getVal() const {
+        return val;
+    }
 };
 
 class Healer : public Item {
-private:
-    float hp;
 public:
-    Healer(float hp) : hp(hp), Item([=](Creature &c) -> bool {
+    Healer(float hp) : Item(hp, [=](Creature &c) -> bool {
         return c.updHp(hp) > 0;
     }) {}
 
     std::shared_ptr<Entity> clone() override {
-        return std::make_shared<Healer>(hp);
+        return std::make_shared<Healer>(val);
     }
 };
 
 class Armor : public Item {
-private:
-    float arm;
 public:
-    Armor(float arm) : arm(arm), Item([=](Creature &c) -> bool {
+    Armor(float arm) : Item(arm, [=](Creature &c) -> bool {
         c.updArmor(arm);
         return true;
     }) {}
 
     std::shared_ptr<Entity> clone() override {
-        return std::make_shared<Armor>(arm);
+        return std::make_shared<Armor>(val);
     }
 };
 
 class Weapon : public Item {
-private:
-    float dmg;
 public:
-    Weapon(float dmg) : dmg(dmg), Item([=](Creature &c) -> bool {
+    Weapon(float dmg) : Item(dmg, [=](Creature &c) -> bool {
         c.updDmg(dmg);
         return true;
     }) {}
 
     std::shared_ptr<Entity> clone() override {
-        return std::make_shared<Weapon>(dmg);
+        return std::make_shared<Weapon>(val);
     }
 };
 
