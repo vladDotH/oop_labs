@@ -100,19 +100,23 @@ void Window::newGame() {
 
 void Window::load() {
     stop();
+    std::shared_ptr<Game> newGame;
     QString file = QFileDialog::getOpenFileName(this, "загрузить");
+
     if (!file.isEmpty()) {
-        if (!file.isEmpty()) {
-            try {
-                QFile jsonFile(file);
-                jsonFile.open(QFile::ReadOnly);
-                game = gs.deserialize(QJsonDocument::fromJson(jsonFile.readAll()).object());
-            } catch (std::exception &e) {
-                QMessageBox::warning(this, "Ошибка загрузки",
-                                     QString(e.what()), "OK");
-            }
+        try {
+            QFile jsonFile(file);
+            jsonFile.open(QFile::ReadOnly);
+            newGame = gs.deserialize(QJsonDocument::fromJson(jsonFile.readAll()).object());
+
+        } catch (std::exception &e) {
+            QMessageBox::warning(this, "Ошибка загрузки",
+                                 QString(e.what()), "OK");
+            return;
         }
     }
+
+    game = newGame;
     start();
 }
 
